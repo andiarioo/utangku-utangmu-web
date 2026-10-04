@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Penguji — Utangku Utangmu</title>
+<meta name="description" content="Cara memasang Utangku Utangmu versi uji tertutup, apa yang perlu dicoba, dan cara melaporkan masalah.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hutan: #123F2E;
+    --hutan-terang: #8FC7AC;
+    --hutan-sekunder: #7D958C;
+    --kertas: #F1F4F1;
+    --permukaan: #FFFFFF;
+    --tinta: #171A21;
+    --redup: #5C636F;
+    --garis: #DDE3DE;
+    --kunyit: #8A5D0B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--kertas);
+    color: var(--tinta);
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .bungkus { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+  header { background: var(--hutan); color: #fff; padding: 56px 0 48px; }
+  header .bungkus { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  header h1 { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.7px; line-height: 1.15; }
+  header p { margin: 0; color: var(--hutan-terang); font-size: 18px; }
+
+  main { padding: 48px 0 32px; }
+  section { margin-bottom: 44px; }
+  h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; margin: 0 0 14px; }
+  p { margin: 0 0 16px; }
+
+  ol, ul { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 12px; }
+
+  .kartu { background: var(--permukaan); border: 1px solid var(--garis); border-radius: 14px; padding: 24px; }
+  .kartu :last-child { margin-bottom: 0; }
+
+  .penting { border-left: 4px solid var(--kunyit); }
+  .penting h2 { font-size: 19px; }
+
+  .tombol {
+    display: inline-block; background: var(--hutan); color: #fff;
+    padding: 15px 26px; border-radius: 15px; font-weight: 700;
+    text-decoration: none; font-size: 17px;
+  }
+  .nanti {
+    display: inline-block; border: 1.6px dashed var(--garis); color: var(--redup);
+    padding: 15px 22px; border-radius: 15px; font-weight: 600; font-size: 16px;
+  }
+
+  .tanya { background: var(--hutan); color: #fff; border: none; }
+  .tanya h2 { color: #fff; }
+  .tanya p { color: var(--hutan-terang); }
+  .tanya strong { color: #fff; }
+
+  a { color: var(--hutan); font-weight: 600; }
+  footer { border-top: 1px solid var(--garis); padding: 28px 0 56px; color: var(--redup); font-size: 15px; }
+  footer p { margin: 0 0 8px; }
+
+  @media (max-width: 520px) {
+    header { padding: 44px 0 36px; }
+    header h1 { font-size: 27px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bungkus">
+    <svg width="68" height="55" viewBox="18 24 64 52" role="img" aria-label="Logo Utangku Utangmu">
+      <path fill="#FFFFFF" d="M18 24 H82 V38 H66 V46 H50 V38 H34 V46 H18 Z"/>
+      <path fill="#8FC7AC" d="M18 62 H34 V54 H50 V62 H66 V54 H82 V76 H18 Z"/>
+    </svg>
+    <h1>Terima kasih sudah mau bantu menguji</h1>
+    <p>Halaman ini menjelaskan cara memasangnya dan apa saja yang paling berguna untuk dicoba.</p>
+  </div>
+</header>
+
+<main class="bungkus">
+
+  <section>
+    <h2>Cara memasang</h2>
+    <div class="kartu">
+      <ol>
+        <li>Buka tautan di bawah ini <strong>dari HP Android</strong>, dengan akun Google yang alamatnya sudah kamu kirimkan</li>
+        <li>Tekan <strong>Jadi penguji</strong></li>
+        <li>Tekan <strong>Download it on Google Play</strong>, lalu pasang seperti biasa</li>
+      </ol>
+      <p><span class="nanti">Tautan pasang menyusul</span></p>
+      <p>Kalau Play Store bilang aplikasinya tidak tersedia, kemungkinan besar alamat email kamu belum terdaftar. Kabari saja.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Yang paling berguna untuk dicoba</h2>
+    <div class="kartu">
+      <ol>
+        <li><strong>Catat utang piutang yang memang nyata</strong> — bukan contoh-contohan. Aplikasinya baru terasa benar atau salah kalau datanya sungguhan.</li>
+        <li><strong>Catat cicilan</strong> pada salah satu catatan, lalu periksa apakah sisanya betul.</li>
+        <li><strong>Buka satu catatan, tekan Kirim pengingat</strong>, lalu baca pesan yang disiapkan aplikasi.</li>
+        <li><strong>Coba backup</strong> dari menu titik tiga, simpan filenya ke Drive atau ke mana pun.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="kartu tanya">
+      <h2>Satu pertanyaan yang paling saya butuhkan jawabannya</h2>
+      <p>Setelah membaca pesan yang disiapkan aplikasi di langkah 3:</p>
+      <p><strong>Apakah kamu benar-benar berani mengirim pesan itu ke orangnya?</strong></p>
+      <p>Kalau tidak — bagian mana yang bikin ragu? Kalimatnya terlalu kaku, terlalu santai, terlalu menuduh, atau ada yang kurang?</p>
+      <p>Jawaban jujur untuk pertanyaan ini jauh lebih berharga daripada daftar bug.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kalau ada yang aneh</h2>
+    <div class="kartu">
+      <p>Kabari saja lewat WhatsApp. Yang sangat membantu kalau disertakan:</p>
+      <ul>
+        <li>HP-nya apa</li>
+        <li>Sedang melakukan apa saat itu terjadi</li>
+        <li>Tangkapan layarnya</li>
+      </ul>
+      <p>Keluhan sekecil apa pun boleh — "tulisannya kekecilan", "nggak nemu tombolnya", "warnanya aneh". Justru itu yang paling berguna, karena saya sudah terlalu terbiasa dengan aplikasinya sendiri untuk menyadarinya.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Satu permintaan</h2>
+    <div class="kartu penting">
+      <p><strong>Tolong jangan copot aplikasinya selama minimal dua minggu.</strong> Google menghitung jumlah penguji yang memakainya terus-menerus sebagai syarat sebelum aplikasi boleh terbit untuk umum. Satu orang yang mencopot bisa membuat hitungannya mundur.</p>
+      <p>Setelah masa uji selesai, bebas.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Soal data kamu</h2>
+    <div class="kartu">
+      <p>Catatan yang kamu tulis tersimpan di HP kamu sendiri dan tidak dikirim ke server mana pun. Saya tidak bisa melihatnya — tidak nama, tidak nominal, tidak apa pun.</p>
+      <p>Yang terkirim hanya data pemakaian aplikasi, misalnya "sebuah catatan dibuat", tanpa isinya. Selengkapnya di <a href="kebijakan-privasi.html">kebijakan privasi</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bungkus">
+  <p><a href="index.html">Utangku Utangmu</a> — diterbitkan oleh Digital Insight ID</p>
+  <p><a href="kebijakan-privasi.html">Kebijakan privasi</a></p>
+</footer>
+
+</body>
+</html>

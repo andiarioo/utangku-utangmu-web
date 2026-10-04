@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Insight ID</title>
+<meta name="description" content="Digital Insight ID — pengembang aplikasi Utangku Utangmu, pencatat utang piutang yang menjaga data penggunanya tetap di perangkat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hutan: #123F2E;
+    --hutan-terang: #8FC7AC;
+    --kertas: #F1F4F1;
+    --permukaan: #FFFFFF;
+    --tinta: #171A21;
+    --redup: #5C636F;
+    --garis: #DDE3DE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--kertas);
+    color: var(--tinta);
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .bungkus { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  header { background: var(--hutan); color: #fff; padding: 64px 0 56px; }
+  header .bungkus { display: flex; flex-direction: column; gap: 20px; }
+  header h1 { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+  header p { margin: 0; color: var(--hutan-terang); font-size: 18px; }
+  main { padding: 48px 0 64px; }
+  section { margin-bottom: 40px; }
+  h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--redup); margin: 0 0 12px; }
+  .kartu {
+    background: var(--permukaan);
+    border: 1px solid var(--garis);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .kartu h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; }
+  .kartu p { margin: 0 0 14px; color: var(--redup); }
+  .kartu p:last-child { margin-bottom: 0; }
+  a { color: var(--hutan); font-weight: 600; }
+  ul { margin: 0; padding-left: 20px; color: var(--redup); }
+  li { margin-bottom: 6px; }
+  footer { border-top: 1px solid var(--garis); padding: 28px 0 56px; color: var(--redup); font-size: 15px; }
+  footer p { margin: 0 0 6px; }
+  @media (max-width: 480px) {
+    header { padding: 44px 0 36px; }
+    header h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bungkus">
+    <!-- Mark: dua bilah kayu bertakik yang mengunci saat disatukan. -->
+    <svg width="76" height="62" viewBox="18 24 64 52" aria-label="Logo" role="img">
+      <path fill="#FFFFFF" d="M18 24 H82 V38 H66 V46 H50 V38 H34 V46 H18 Z"/>
+      <path fill="#8FC7AC" d="M18 62 H34 V54 H50 V62 H66 V54 H82 V76 H18 Z"/>
+    </svg>
+    <h1>Digital Insight ID</h1>
+    <p>Perangkat lunak yang menjaga data penggunanya tetap di tangan mereka sendiri.</p>
+  </div>
+</header>
+
+<main class="bungkus">
+
+  <section>
+    <h2>Aplikasi</h2>
+    <div class="kartu">
+      <h3>Utangku Utangmu</h3>
+      <p>Pencatat utang piutang pribadi untuk Android. Selain mencatat, aplikasi ini menyiapkan pesan penagihan yang tinggal dikirim lewat aplikasi chat — supaya menagih tidak terasa seperti menuduh.</p>
+      <ul>
+        <li>Catat utang dan piutang dua arah, beserta cicilan dan sisanya</li>
+        <li>Pengingat jatuh tempo, dijadwalkan di dalam perangkat</li>
+        <li>Pesan siap kirim dalam tiga nada</li>
+        <li>Backup ke file milik pengguna sendiri</li>
+      </ul>
+      <!-- Setelah aplikasi terbit, ganti baris ini dengan:
+           <p style="margin-top:14px"><a href="ALAMAT PLAY STORE">Lihat di Google Play</a></p> -->
+      <p style="margin-top:14px"><strong>Segera di Google Play.</strong></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Privasi</h2>
+    <div class="kartu">
+      <p>Catatan utang pengguna tersimpan di perangkatnya sendiri dan tidak dikirim ke server mana pun. Yang dikirim hanya data pemakaian aplikasi tanpa isi catatan, dan itu dijelaskan selengkapnya di halaman kebijakan privasi.</p>
+      <p><a href="kebijakan-privasi.html">Baca kebijakan privasi</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kontak</h2>
+    <div class="kartu">
+      <p>Pertanyaan, masukan, atau laporan masalah:</p>
+      <p><a href="mailto:digitalinsight1709@gmail.com">digitalinsight1709@gmail.com</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bungkus">
+  <p>Digital Insight ID</p>
+</footer>
+
+</body>
+</html>

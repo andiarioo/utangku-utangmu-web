@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Digital Insight ID</title>
-<meta name="description" content="Digital Insight ID — pengembang aplikasi Utangku Utangmu, pencatat utang piutang yang menjaga data penggunanya tetap di perangkat.">
+<title>Utangku Utangmu — catat utang, tagih tanpa canggung</title>
+<meta name="description" content="Pencatat utang piutang pribadi untuk Android. Selain mencatat, aplikasi ini menyiapkan pesan penagihan yang tinggal dikirim — supaya menagih tidak terasa seperti menuduh. Data tersimpan di HP Anda saja.">
+<meta property="og:title" content="Utangku Utangmu">
+<meta property="og:description" content="Catat utang piutang, lalu tagih lewat pesan siap kirim. Data di HP Anda saja.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -12,6 +15,7 @@
   :root {
     --hutan: #123F2E;
     --hutan-terang: #8FC7AC;
+    --hutan-sekunder: #7D958C;
     --kertas: #F1F4F1;
     --permukaan: #FFFFFF;
     --tinta: #171A21;
@@ -26,32 +30,52 @@
     font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
     font-size: 17px;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-  .bungkus { max-width: 720px; margin: 0 auto; padding: 0 20px; }
-  header { background: var(--hutan); color: #fff; padding: 64px 0 56px; }
-  header .bungkus { display: flex; flex-direction: column; gap: 20px; }
-  header h1 { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
-  header p { margin: 0; color: var(--hutan-terang); font-size: 18px; }
-  main { padding: 48px 0 64px; }
-  section { margin-bottom: 40px; }
-  h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--redup); margin: 0 0 12px; }
-  .kartu {
-    background: var(--permukaan);
-    border: 1px solid var(--garis);
-    border-radius: 14px;
-    padding: 24px;
+  .bungkus { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+  header { background: var(--hutan); color: #fff; padding: 72px 0 64px; }
+  header .bungkus { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+  header h1 { margin: 0; font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+  header h1 span { color: var(--hutan-sekunder); }
+  .janji { margin: 0; color: var(--hutan-terang); font-size: 21px; max-width: 30ch; }
+  .lencana {
+    display: inline-block; margin-top: 6px; padding: 10px 18px;
+    border: 1.6px solid var(--hutan-terang); border-radius: 15px;
+    color: var(--hutan-terang); font-size: 15px; font-weight: 600;
   }
-  .kartu h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; }
-  .kartu p { margin: 0 0 14px; color: var(--redup); }
-  .kartu p:last-child { margin-bottom: 0; }
+
+  main { padding: 56px 0 24px; }
+  section { margin-bottom: 56px; }
+  h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--redup); margin: 0 0 14px; }
+  h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; margin: 0 0 10px; }
+  p { margin: 0 0 16px; }
+  .utama { font-size: 20px; line-height: 1.55; }
+
+  .kartu { background: var(--permukaan); border: 1px solid var(--garis); border-radius: 14px; padding: 26px; }
+  .kartu p:last-child, .kartu ul:last-child { margin-bottom: 0; }
+
+  ul { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 10px; }
+  li strong { font-weight: 800; }
+
+  /* Tangkapan layar digulir mendatar: enam layar tidak akan muat berjejer di
+     lebar HP, dan memperkecilnya sampai muat membuat teksnya tak terbaca. */
+  .layar { display: flex; gap: 16px; overflow-x: auto; padding: 4px 20px 20px; scroll-snap-type: x mandatory; }
+  .layar figure { margin: 0; flex: 0 0 auto; width: 232px; scroll-snap-align: center; }
+  .layar img { width: 100%; height: auto; display: block; border: 1px solid var(--garis); border-radius: 14px; background: var(--permukaan); }
+  .layar figcaption { margin-top: 10px; font-size: 14px; color: var(--redup); line-height: 1.4; }
+  .geser { font-size: 14px; color: var(--redup); margin: 0 0 6px; }
+
   a { color: var(--hutan); font-weight: 600; }
-  ul { margin: 0; padding-left: 20px; color: var(--redup); }
-  li { margin-bottom: 6px; }
-  footer { border-top: 1px solid var(--garis); padding: 28px 0 56px; color: var(--redup); font-size: 15px; }
-  footer p { margin: 0 0 6px; }
-  @media (max-width: 480px) {
-    header { padding: 44px 0 36px; }
-    header h1 { font-size: 26px; }
+  footer { border-top: 1px solid var(--garis); padding: 32px 0 64px; color: var(--redup); font-size: 15px; }
+  footer p { margin: 0 0 8px; }
+
+  @media (max-width: 520px) {
+    header { padding: 52px 0 44px; }
+    header h1 { font-size: 32px; }
+    .janji { font-size: 19px; }
+    .utama { font-size: 18px; }
   }
 </style>
 </head>
@@ -59,55 +83,100 @@
 
 <header>
   <div class="bungkus">
-    <!-- Mark: dua bilah kayu bertakik yang mengunci saat disatukan. -->
-    <svg width="76" height="62" viewBox="18 24 64 52" aria-label="Logo" role="img">
+    <!-- Mark: dua bilah kayu bertakik yang hanya bertemu bila disatukan. -->
+    <svg width="84" height="68" viewBox="18 24 64 52" role="img" aria-label="Logo Utangku Utangmu">
       <path fill="#FFFFFF" d="M18 24 H82 V38 H66 V46 H50 V38 H34 V46 H18 Z"/>
       <path fill="#8FC7AC" d="M18 62 H34 V54 H50 V62 H66 V54 H82 V76 H18 Z"/>
     </svg>
-    <h1>Digital Insight ID</h1>
-    <p>Perangkat lunak yang menjaga data penggunanya tetap di tangan mereka sendiri.</p>
+    <h1>Utangku <span>Utangmu</span></h1>
+    <p class="janji">Catat utang piutang, lalu tagih lewat pesan siap kirim.</p>
+    <span class="lencana">Segera di Google Play</span>
   </div>
 </header>
 
 <main class="bungkus">
-
   <section>
-    <h2>Aplikasi</h2>
+    <p class="utama">Menagih utang ke teman sendiri selalu canggung. Anda ingat betul siapa yang belum membayar, tapi memulai percakapannya terasa berat: takut terdengar menuduh, takut merusak hubungan yang baik-baik saja.</p>
+    <p class="utama"><strong>Aplikasi ini dibuat untuk bagian itu.</strong> Ia mencatat utang dan piutang seperti pencatat lain — bedanya, ia juga menyiapkan pesannya. Karena pesannya terbaca sebagai catatan dari aplikasi, menagih tidak lagi terasa seperti menuduh.</p>
+  </section>
+
+  <section style="margin-bottom:14px">
+    <h2>Tampilannya</h2>
+    <p class="geser">Geser untuk melihat semuanya.</p>
+  </section>
+</main>
+
+<div class="layar">
+  <figure>
+    <img src="gambar/1-daftar.png" width="1242" height="2208" loading="lazy" alt="Layar utama: ringkasan dua arah dan daftar catatan per kelompok">
+    <figcaption>Siapa berutang, berapa sisanya, dan mana yang perlu ditindak hari ini.</figcaption>
+  </figure>
+  <figure>
+    <img src="gambar/2-pesan-resmi.png" width="1242" height="2208" loading="lazy" alt="Layar pesan dengan nada format resmi beserta pratinjaunya">
+    <figcaption>Pesan format resmi — rinciannya tersusun rapi, nadanya tenang.</figcaption>
+  </figure>
+  <figure>
+    <img src="gambar/3-pesan-santai.png" width="1242" height="2208" loading="lazy" alt="Layar pesan dengan nada santai beserta pratinjaunya">
+    <figcaption>Atau nada santai, untuk teman dekat dan keluarga.</figcaption>
+  </figure>
+  <figure>
+    <img src="gambar/4-detail.png" width="1242" height="2208" loading="lazy" alt="Layar detail catatan beserta riwayat pembayaran">
+    <figcaption>Sisa terhitung otomatis dari setiap cicilan yang masuk.</figcaption>
+  </figure>
+  <figure>
+    <img src="gambar/6-telat.png" width="1242" height="2208" loading="lazy" alt="Daftar dengan satu catatan yang telat ditandai">
+    <figcaption>Yang telat ditandai, tanpa membuat aplikasi terasa menghakimi.</figcaption>
+  </figure>
+  <figure>
+    <img src="gambar/5-backup.png" width="1242" height="2208" loading="lazy" alt="Layar backup dan pulihkan">
+    <figcaption>Backup ke file milik Anda sendiri, bukan ke server kami.</figcaption>
+  </figure>
+</div>
+
+<main class="bungkus">
+  <section>
+    <h2>Yang bisa Anda lakukan</h2>
     <div class="kartu">
-      <h3>Utangku Utangmu</h3>
-      <p>Pencatat utang piutang pribadi untuk Android. Selain mencatat, aplikasi ini menyiapkan pesan penagihan yang tinggal dikirim lewat aplikasi chat — supaya menagih tidak terasa seperti menuduh.</p>
       <ul>
-        <li>Catat utang dan piutang dua arah, beserta cicilan dan sisanya</li>
-        <li>Pengingat jatuh tempo, dijadwalkan di dalam perangkat</li>
-        <li>Pesan siap kirim dalam tiga nada</li>
-        <li>Backup ke file milik pengguna sendiri</li>
+        <li><strong>Catat dua arah</strong> — siapa berutang kepada Anda, dan kepada siapa Anda berutang</li>
+        <li><strong>Catat cicilan</strong> satu per satu; sisanya dihitung otomatis sampai lunas</li>
+        <li><strong>Pengingat jatuh tempo</strong> pada pagi harinya, dan sekali lagi bila tiga hari lewat tanpa dibayar</li>
+        <li><strong>Pesan siap kirim</strong> dalam tiga nada: format resmi, santai, dan sopan</li>
+        <li><strong>Bagikan lewat aplikasi chat mana pun</strong> — WhatsApp, Telegram, atau SMS</li>
+        <li><strong>Backup dan pulihkan</strong> saat ganti HP; catatan yang sudah ada tidak dihapus, hanya digabungkan</li>
       </ul>
-      <!-- Setelah aplikasi terbit, ganti baris ini dengan:
-           <p style="margin-top:14px"><a href="ALAMAT PLAY STORE">Lihat di Google Play</a></p> -->
-      <p style="margin-top:14px"><strong>Segera di Google Play.</strong></p>
     </div>
   </section>
 
   <section>
     <h2>Privasi</h2>
     <div class="kartu">
-      <p>Catatan utang pengguna tersimpan di perangkatnya sendiri dan tidak dikirim ke server mana pun. Yang dikirim hanya data pemakaian aplikasi tanpa isi catatan, dan itu dijelaskan selengkapnya di halaman kebijakan privasi.</p>
-      <p><a href="kebijakan-privasi.html">Baca kebijakan privasi</a></p>
+      <h3>Catatan Anda tidak ke mana-mana</h3>
+      <p>Seluruh catatan tersimpan di perangkat Anda sendiri. Tidak ada akun yang perlu dibuat, tidak ada yang dikirim ke server kami, dan seluruh fungsinya berjalan tanpa internet.</p>
+      <p>Yang memang dikirim hanya data pemakaian aplikasi — kejadian seperti "sebuah catatan dibuat", tanpa nama, nominal, atau isi catatan apa pun.</p>
+      <p><a href="kebijakan-privasi.html">Baca kebijakan privasi selengkapnya</a></p>
     </div>
   </section>
 
   <section>
-    <h2>Kontak</h2>
+    <h2>Yang sengaja tidak ada</h2>
     <div class="kartu">
-      <p>Pertanyaan, masukan, atau laporan masalah:</p>
-      <p><a href="mailto:digitalinsight1709@gmail.com">digitalinsight1709@gmail.com</a></p>
+      <p>Tidak ada iklan di dalam daftar catatan Anda. Tidak ada saldo bersih yang menjumlahkan utang dan piutang jadi satu angka — keduanya dua hubungan berbeda, dan menjumlahkannya menghilangkan artinya. Tidak ada pinjaman online, dan tidak ada penawaran kredit.</p>
     </div>
   </section>
 
+  <section>
+    <h2>Bantuan dan masukan</h2>
+    <div class="kartu">
+      <p>Ada yang rusak, membingungkan, atau kurang? Ceritakan saja. Aplikasi ini masih muda, dan masukan paling awal yang paling berpengaruh.</p>
+      <p><a href="mailto:digitalinsight1709@gmail.com">digitalinsight1709@gmail.com</a></p>
+    </div>
+  </section>
 </main>
 
 <footer class="bungkus">
-  <p>Digital Insight ID</p>
+  <p>Utangku Utangmu — diterbitkan oleh Digital Insight ID</p>
+  <p><a href="kebijakan-privasi.html">Kebijakan privasi</a></p>
 </footer>
 
 </body>

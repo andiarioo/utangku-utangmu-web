@@ -294,6 +294,9 @@ Aturan gaya antislop tidak berlaku. Pemeriksaan teknis berikut tetap wajib sebel
 - `lang="id"`, satu H1, tingkat judul tidak melompat, landmark `header` · `nav` · `main` · `footer`, `alt` pada semua gambar, hiasan `aria-hidden`.
 - Tanpa JavaScript. FAQ memakai `<details>`.
 - Tanpa langkah build: folder siap unggah ke Cloudflare Pages apa adanya.
+- Tautan antarhalaman tanpa `.html` (`kebijakan-privasi`, `./`). Cloudflare Pages mengalihkan alamat `.html` ke alamat tanpa akhiran itu, jadi alamat kanonis dan tautan memakai bentuk akhirnya. Akibatnya server lokal `python3 -m http.server` tidak bisa membuka tautan ke subhalaman; buka berkas `.html`-nya langsung.
+- `404.html` untuk alamat yang tidak ada (tanpanya Cloudflare menampilkan beranda untuk semua alamat, termasuk `robots.txt`). Alamat di dalamnya dimulai dari `/` karena halaman ini juga tampil di alamat bertingkat.
+- `robots.txt` membolehkan semua. `penguji.html` tetap `noindex`.
 
 Laporan audit di `anti-slop/` adalah untuk revisi 1 dan 2, disimpan sebagai riwayat.
 

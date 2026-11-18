@@ -254,6 +254,10 @@ Suara antarmuka (panduan v1.3 halaman 11): "Anda", tenang, menyatakan keadaan ta
 
 - Hover, tekan, dan fokus: perubahan warna, tepi, atau bayangan 150ms.
 - Kemiringan struk, HP, dan stiker statis. Tanpa animasi saat menggulir.
+- Gulir halus saat menekan tautan menu dan "Lihat cara kerja".
+- Panah di tombol "Lihat cara kerja" bergeser 3px ke kanan saat hover.
+- Efek tekan (mengecil ke 97%) hanya pada dua baki lencana dan tombol "Lihat cara kerja". Tautan teks, logo, dan pertanyaan FAQ tidak diberi efek tekan.
+- FAQ: panah di kanan berputar dan jawaban muncul pelan (250ms). Tinggi jawaban ikut bergeser hanya di browser yang mendukung `interpolate-size` (Chrome, termasuk Android); browser lain membuka langsung.
 - `prefers-reduced-motion: reduce` mematikan semua transisi.
 
 ---

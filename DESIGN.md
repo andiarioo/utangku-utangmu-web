@@ -312,7 +312,7 @@ Testimoni, angka pengguna, rating, logo "dipercaya oleh", harga, emoji, bingkai 
 ## 14. Keputusan
 
 1. **CTA.** Lencana menuju `https://play.google.com/apps/testing/id.utangkumu.app` (uji tertutup), tanpa keterangan uji. Saat terbit: ganti ke `https://play.google.com/store/apps/details?id=id.utangkumu.app` (`CATATAN-TERTUNDA.md` A34 di repo aplikasi).
-2. **Domain.** Tanpa domain kustom; alamat kanonis `utangku-utangmu.pages.dev`.
+2. **Domain.** Tanpa domain kustom; alamat kanonis `utangkuutangmu.pages.dev`.
 3. **Kontak.** Surel dan WhatsApp PT Digital Insight Indonesia di kaki halaman, sesuai yang diberikan pemilik.
 4. **Revisi 2 disimpan** di commit `cf04595` sebelum diganti.
 5. **Mode gelap** tidak ada (bagian 10).

@@ -3,180 +3,450 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Utangku Utangmu — catat utang, tagih tanpa canggung</title>
-<meta name="description" content="Pencatat utang piutang pribadi untuk Android. Selain mencatat, aplikasi ini menyiapkan pesan penagihan yang tinggal dikirim — supaya menagih tidak terasa seperti menuduh. Data tersimpan di HP Anda saja.">
-<meta property="og:title" content="Utangku Utangmu">
-<meta property="og:description" content="Catat utang piutang, lalu tagih lewat pesan siap kirim. Data di HP Anda saja.">
+<title>Utangku Utangmu: catat utang, tagih tanpa canggung</title>
+<meta name="description" content="Aplikasi Android untuk mencatat utang piutang pribadi. Pesan penagihan dan pengakuan utang sudah disiapkan, tinggal kirim lewat WhatsApp. Catatan hutang tersimpan di HP Anda sendiri.">
+<link rel="canonical" href="https://utangku-utangmu.pages.dev/">
+<meta name="theme-color" content="#123F2E">
+
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="Utangku Utangmu">
+<meta property="og:title" content="Utangku Utangmu: catat utang, tagih tanpa canggung">
+<meta property="og:description" content="Catat utang piutang. Pesan penagihannya sudah disiapkan, tinggal kirim.">
+<meta property="og:url" content="https://utangku-utangmu.pages.dev/">
+<meta property="og:image" content="https://utangku-utangmu.pages.dev/gambar/og-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Utangku Utangmu di atas latar hijau tua, dengan tulisan Catat utang, tagih tanpa canggung">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preload" href="huruf/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="huruf/plus-jakarta-sans-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="huruf/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="gaya.css">
 <style>
   :root {
-    --hutan: #123F2E;
-    --hutan-terang: #8FC7AC;
-    --hutan-sekunder: #7D958C;
-    --kertas: #F1F4F1;
-    --permukaan: #FFFFFF;
-    --tinta: #171A21;
-    --redup: #5C636F;
-    --garis: #DDE3DE;
+    --bezel: #171A21;
+    --kamera: #2C313A;
+    --babak: var(--j-16);        /* jarak tepi atas/bawah tiap babak */
+    --antar: var(--j-16);        /* jarak antarbagian di dalam satu babak */
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--kertas);
-    color: var(--tinta);
-    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+  @media (min-width: 900px) { :root { --babak: var(--j-24); --antar: var(--j-24); } }
+  @media (prefers-color-scheme: dark) { :root { --bezel: #2C313A; --kamera: #0E1014; } }
+
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Satu ukuran judul bagian di seluruh halaman, supaya babak terbaca sebagai satu cerita. */
+  .judul-bagian { font-size: clamp(1.75rem, 4.5vw, 3rem); max-width: 20ch; }
+  .pengantar { margin-top: var(--j-5); font-size: 1.1875rem; line-height: 1.55; max-width: 48ch; }
+
+  /* Pita gelap dan motif panah (Hutan Terang 13%, BRAND-GUIDELINE 5). */
+  .pita { position: relative; overflow: hidden; }
+  .pita > .bungkus, .pita > section { position: relative; }
+  .motif { position: absolute; pointer-events: none; color: var(--hutan-terang); opacity: 0.13; }
+
+  /* Bingkai HP Android: layar 9:19,5, bezel tipis rata, kamera berlubang di
+     area status yang dibiarkan kosong (tanpa jam atau baterai karangan). */
+  .hp { margin: 0; container-type: inline-size; }
+  .hp-layar { position: relative; background: var(--bezel); padding: 2.6cqw; border-radius: 12cqw; }
+  .hp-layar::before { content: ""; position: absolute; top: 4.6cqw; left: 50%; width: 3.2cqw; height: 3.2cqw; margin-left: -1.6cqw; border-radius: 50%; background: var(--kamera); }
+  .hp img { display: block; width: 100%; height: auto; padding-top: 7.5cqw; background: #F1F4F1; border-radius: 9.6cqw; }
+
+  /* Lencana resmi Google Play: tidak diubah. Hover dan tekan ditandai cincin di luarnya. */
+  .lencana-play { display: inline-block; border-radius: 12px; line-height: 0; }
+  .lencana-play img { height: 64px; width: auto; }
+  .lencana-play:hover { outline: 2px solid var(--hutan-sekunder); outline-offset: 4px; }
+  .lencana-play:active { outline: 3px solid #FFFFFF; outline-offset: 4px; }
+  .lencana-play:focus-visible { outline: 3px solid var(--hutan-terang); outline-offset: 4px; }
+  .status-uji { margin: var(--j-2) 0 0; font-size: 0.9375rem; color: var(--hutan-terang); }
+
+  /* ---- Babak 1: hero ---- */
+  .hero { padding-block: var(--j-6) var(--babak); }
+  .hero-isi { display: grid; gap: var(--j-10); margin-top: var(--j-10); align-items: center; }
+  .hero h1 { font-size: clamp(2.25rem, 7vw, 4rem); line-height: 1.05; max-width: 14ch; }
+  .hero .sub { margin-top: var(--j-5); font-size: 1.1875rem; line-height: 1.5; color: var(--hutan-terang); max-width: 30ch; }
+  .hero .aksi { margin-top: var(--j-8); }
+  .pita .motif-1 { width: 420px; height: 420px; right: -60px; top: -40px; }
+  .pita .motif-2 { width: 220px; height: 220px; left: -50px; bottom: -30px; }
+
+  .tumpuk { display: grid; width: min(100%, 380px); justify-self: center; }
+  .tumpuk .hp { grid-area: 1 / 1; width: 58%; }
+  .tumpuk .belakang { justify-self: start; transform: rotate(-5deg); }
+  .tumpuk .depan { justify-self: end; margin-top: 12%; transform: rotate(3deg); }
+  .tumpuk .depan .hp-layar { outline: 3px solid var(--hutan); }
+
+  @media (min-width: 600px) {
+    .hero-isi { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); column-gap: var(--j-8); }
   }
-  .bungkus { max-width: 760px; margin: 0 auto; padding: 0 20px; }
-
-  header { background: var(--hutan); color: #fff; padding: 72px 0 64px; }
-  header .bungkus { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
-  header h1 { margin: 0; font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
-  header h1 span { color: var(--hutan-sekunder); }
-  .janji { margin: 0; color: var(--hutan-terang); font-size: 21px; max-width: 30ch; }
-  .lencana {
-    display: inline-block; margin-top: 6px; padding: 10px 18px;
-    border: 1.6px solid var(--hutan-terang); border-radius: 15px;
-    color: var(--hutan-terang); font-size: 15px; font-weight: 600;
+  @media (min-width: 900px) {
+    .hero { padding-top: var(--j-8); }
+    .hero-isi { margin-top: var(--j-16); column-gap: var(--j-16); }
+    .tumpuk { width: 420px; }
   }
 
-  main { padding: 56px 0 24px; }
-  section { margin-bottom: 56px; }
-  h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--redup); margin: 0 0 14px; }
-  h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; margin: 0 0 10px; }
-  p { margin: 0 0 16px; }
-  .utama { font-size: 20px; line-height: 1.55; }
-
-  .kartu { background: var(--permukaan); border: 1px solid var(--garis); border-radius: 14px; padding: 26px; }
-  .kartu p:last-child, .kartu ul:last-child { margin-bottom: 0; }
-
-  ul { margin: 0 0 16px; padding-left: 22px; }
-  li { margin-bottom: 10px; }
-  li strong { font-weight: 800; }
-
-  /* Tangkapan layar digulir mendatar: enam layar tidak akan muat berjejer di
-     lebar HP, dan memperkecilnya sampai muat membuat teksnya tak terbaca. */
-  .layar { display: flex; gap: 16px; overflow-x: auto; padding: 4px 20px 20px; scroll-snap-type: x mandatory; }
-  .layar figure { margin: 0; flex: 0 0 auto; width: 232px; scroll-snap-align: center; }
-  .layar img { width: 100%; height: auto; display: block; border: 1px solid var(--garis); border-radius: 14px; background: var(--permukaan); }
-  .layar figcaption { margin-top: 10px; font-size: 14px; color: var(--redup); line-height: 1.4; }
-  .geser { font-size: 14px; color: var(--redup); margin: 0 0 6px; }
-
-  a { color: var(--hutan); font-weight: 600; }
-  footer { border-top: 1px solid var(--garis); padding: 32px 0 64px; color: var(--redup); font-size: 15px; }
-  footer p { margin: 0 0 8px; }
-
-  @media (max-width: 520px) {
-    header { padding: 52px 0 44px; }
-    header h1 { font-size: 32px; }
-    .janji { font-size: 19px; }
-    .utama { font-size: 18px; }
+  /* ---- Babak 1: masalah ---- */
+  .masalah { padding-block: var(--babak); }
+  .konteks { margin-top: var(--j-4); color: var(--redup); max-width: 60ch; }
+  .dua-arah { list-style: none; margin: var(--j-10) 0 0; padding: 0; display: grid; gap: var(--j-8); }
+  .dua-arah li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--j-4); align-items: start; }
+  .dua-arah svg { width: 56px; height: 56px; color: var(--tautan); }
+  .dua-arah p { font-size: clamp(1.25rem, 2.6vw, 1.625rem); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; margin: 0; }
+  .jawaban { margin-top: var(--j-10); padding-top: var(--j-6); border-top: 1px solid var(--garis); font-size: 1.1875rem; max-width: 48ch; }
+  @media (min-width: 820px) {
+    .dua-arah { grid-template-columns: 1fr 1fr; column-gap: var(--j-16); }
+    .dua-arah li { grid-template-columns: 80px minmax(0, 1fr); }
+    .dua-arah svg { width: 80px; height: 80px; }
   }
+
+  /* ---- Babak 2: demo dan fitur, satu pita hijau muda tanpa potongan ---- */
+  .babak-2 { background: var(--latar-privasi); padding-block: var(--babak); }
+  .babak-2 > section + section { margin-top: var(--antar); }
+  .demo-isi { display: grid; gap: var(--j-10); margin-top: var(--j-10); align-items: start; }
+  @media (min-width: 820px) { .demo-isi { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); column-gap: var(--j-16); } }
+  .pilih { border: 0; margin: 0 0 var(--j-6); padding: 0; min-width: 0; }
+  .pilih legend { font-weight: 700; margin-bottom: var(--j-3); padding: 0; }
+  .pilihan { display: flex; flex-wrap: wrap; gap: var(--j-2); }
+  .pilih input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+  .pilih label {
+    display: inline-flex; align-items: center; gap: var(--j-2); min-height: 48px; padding: 0 var(--j-4);
+    border: 1.6px solid #DCDFE5; border-radius: var(--r-kolom);
+    background: var(--permukaan); color: var(--tinta); font-weight: 600; cursor: pointer;
+    transition: background-color 150ms ease, border-color 150ms ease;
+  }
+  .pilih label:hover { border-color: var(--tautan); }
+  .pilih label:active { background: var(--hutan-halus); }
+  .pilih input:checked + label { background: var(--hutan); border-color: var(--hutan); color: #FFFFFF; }
+  .pilih input:focus-visible + label { outline: 3px solid var(--cincin); outline-offset: 2px; }
+  @media (prefers-color-scheme: dark) {
+    .pilih label { border-color: var(--garis); }
+    .pilih input:checked + label { background: var(--hutan-terang); border-color: var(--hutan-terang); color: var(--di-atas-hutan-terang); }
+  }
+  .alur { margin-top: var(--j-6); color: var(--redup); max-width: 34ch; }
+
+  .pratinjau { margin: 0; background: var(--permukaan); border: 1px solid var(--garis); border-radius: var(--r-kotak); padding: var(--j-6); min-height: 22rem; }
+  .pratinjau .label-pratinjau { font-size: 0.9375rem; color: var(--redup); margin-bottom: var(--j-4); }
+  .pesan pre, .pesan .manusia { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; color: var(--tinta); }
+  .pesan pre { font-family: var(--huruf-mono); font-size: 0.9375rem; }
+  .pesan pre b { font-weight: 600; color: var(--judul-pesan); }
+  .pesan .manusia { font-size: 1.0625rem; }
+  .pesan .untuk { margin-top: var(--j-4); padding-top: var(--j-3); border-top: 1px solid var(--garis); font-size: 0.9375rem; color: var(--redup); }
+  .catatan-demo { margin-top: var(--j-3); font-size: 0.9375rem; color: var(--redup); }
+  @media (max-width: 400px) { .pesan pre { font-size: 0.8125rem; } .pratinjau { padding: var(--j-5) var(--j-4); } }
+
+  /* Tanpa JavaScript: pesan berganti lewat :has(). Browser lama melihat pesan pertama. */
+  @supports selector(:has(*)) {
+    .demo [data-pesan] { display: none; }
+    .demo:has(#arah-tagih:checked):has(#nada-resmi:checked) [data-pesan="tagih-resmi"],
+    .demo:has(#arah-tagih:checked):has(#nada-santai:checked) [data-pesan="tagih-santai"],
+    .demo:has(#arah-tagih:checked):has(#nada-sopan:checked) [data-pesan="tagih-sopan"],
+    .demo:has(#arah-akui:checked):has(#nada-resmi:checked) [data-pesan="akui-resmi"],
+    .demo:has(#arah-akui:checked):has(#nada-santai:checked) [data-pesan="akui-santai"],
+    .demo:has(#arah-akui:checked):has(#nada-sopan:checked) [data-pesan="akui-sopan"] { display: block; }
+  }
+  @supports not selector(:has(*)) {
+    .demo [data-pesan]:not([data-pesan="tagih-resmi"]) { display: none; }
+    .demo .pilih { display: none; }
+  }
+
+  .deret { list-style: none; margin: var(--j-10) 0 0; padding: 0; display: grid; gap: var(--j-8); }
+  .deret li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: var(--j-5); align-items: center; }
+  .deret h3 { margin-bottom: var(--j-2); }
+  .deret p { margin: 0; color: var(--redup); }
+  @media (min-width: 600px) {
+    .deret { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--j-6); }
+    .deret li { grid-template-columns: 1fr; align-items: start; justify-items: start; }
+    .deret .hp { width: min(100%, 220px); }
+  }
+  @media (min-width: 900px) { .deret { column-gap: var(--j-10); } }
+
+  /* ---- Babak 3: privasi dan ajakan, satu pita gelap tanpa potongan ---- */
+  .babak-3 { padding-block: var(--babak); }
+  .privasi-isi { display: grid; gap: var(--j-10); }
+  @media (min-width: 820px) { .privasi-isi { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); column-gap: var(--j-16); align-items: start; } }
+  .babak-3 .pengantar { color: var(--hutan-terang); max-width: 34ch; }
+  .buku { margin: 0; }
+  .buku div { display: grid; gap: var(--j-2); padding: var(--j-4) 0; border-top: 1px solid var(--hutan-sekunder); }
+  .buku div:last-child { border-bottom: 1px solid var(--hutan-sekunder); }
+  .buku dt { font-weight: 700; color: var(--hutan-terang); }
+  .buku dd { margin: 0; }
+  @media (min-width: 600px) { .buku div { grid-template-columns: 10rem minmax(0, 1fr); column-gap: var(--j-6); } }
+  .babak-3 .tautan-blok { margin-top: var(--j-5); }
+  .penutup { margin-top: var(--antar); padding-top: var(--antar); border-top: 1px solid var(--hutan-sekunder); }
+  .penutup .pengantar { margin-bottom: var(--j-8); }
+  .pita .motif-3 { width: 340px; height: 340px; right: -80px; bottom: -80px; }
+
+  .kaki .legal { flex-basis: 100%; font-size: 0.8125rem; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="bungkus">
-    <!-- Mark: dua bilah kayu bertakik yang hanya bertemu bila disatukan. -->
-    <svg width="84" height="68" viewBox="18 24 64 52" role="img" aria-label="Logo Utangku Utangmu">
-      <path fill="#FFFFFF" d="M18 24 H82 V38 H66 V46 H50 V38 H34 V46 H18 Z"/>
-      <path fill="#8FC7AC" d="M18 62 H34 V54 H50 V62 H66 V54 H82 V76 H18 Z"/>
-    </svg>
-    <h1>Utangku <span>Utangmu</span></h1>
-    <p class="janji">Catat utang piutang, lalu tagih lewat pesan siap kirim.</p>
-    <span class="lencana">Segera di Google Play</span>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="panah-ke-atas" viewBox="0 0 24 24">
+    <path d="M5 19 L18 6 M8 5 H19 V16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" stroke-linejoin="miter"/>
+  </symbol>
+  <symbol id="panah-ke-bawah" viewBox="0 0 24 24">
+    <path d="M19 5 L6 18 M16 19 H5 V8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" stroke-linejoin="miter"/>
+  </symbol>
+</svg>
+
+<header class="pita">
+  <svg class="motif motif-1" aria-hidden="true" focusable="false"><use href="#panah-ke-atas"/></svg>
+  <svg class="motif motif-2" aria-hidden="true" focusable="false"><use href="#panah-ke-bawah"/></svg>
+  <div class="bungkus hero">
+    <a class="merek" href="./" aria-label="Utangku Utangmu, beranda">
+      <!-- Mark versi satu warna terang untuk latar gelap (panduan v1.3 hlm. 04). -->
+      <svg width="44" height="36" viewBox="18 24 64 52" aria-hidden="true" focusable="false">
+        <path fill="#FFFFFF" d="M18 24 H82 V38 H66 V46 H50 V38 H34 V46 H18 Z"/>
+        <path fill="#FFFFFF" d="M18 62 H34 V54 H50 V62 H66 V54 H82 V76 H18 Z"/>
+      </svg>
+      <span>Utangku Utangmu</span>
+    </a>
+
+    <div class="hero-isi">
+      <div>
+        <h1>Catat utang piutang. Pesannya sudah disiapkan.</h1>
+        <p class="sub">Tinggal pilih nada, lalu kirim lewat WhatsApp.</p>
+        <div class="aksi">
+          <!-- Uji tertutup. Saat terbit, ganti kedua tautan ini ke
+               https://play.google.com/store/apps/details?id=id.utangkumu.app dan hapus baris status-uji. -->
+          <a class="lencana-play" href="https://play.google.com/apps/testing/id.utangkumu.app">
+            <img src="gambar/google-play-id-330.webp" width="330" height="128" alt="Dapatkan di Google Play">
+          </a>
+          <p class="status-uji">Saat ini dalam uji tertutup.</p>
+        </div>
+      </div>
+
+      <div class="tumpuk">
+        <figure class="hp belakang">
+          <div class="hp-layar">
+            <img src="gambar/hp/1-daftar-300.webp"
+                 srcset="gambar/hp/1-daftar-300.webp 300w, gambar/hp/1-daftar-450.webp 450w, gambar/hp/1-daftar-600.webp 600w"
+                 sizes="(min-width: 900px) 240px, 50vw" width="300" height="650" fetchpriority="high"
+                 alt="Layar utama aplikasi: akan diterima Rp 450.000, harus dibayar Rp 300.000, dan catatan dikelompokkan menjadi Perlu ditindak, Masih ada waktu, Tanpa tenggat, dan Lunas.">
+          </div>
+        </figure>
+        <figure class="hp depan">
+          <div class="hp-layar">
+            <img src="gambar/hp/2-pesan-resmi-300.webp"
+                 srcset="gambar/hp/2-pesan-resmi-300.webp 300w, gambar/hp/2-pesan-resmi-450.webp 450w, gambar/hp/2-pesan-resmi-600.webp 600w"
+                 sizes="(min-width: 900px) 240px, 50vw" width="300" height="650" fetchpriority="high"
+                 alt="Layar Kirim pengingat: pilihan nada, nama pengirim Sari Wulandari, dan pratinjau pesan format resmi untuk Budi Santoso dengan sisa Rp 300.000, di atas tombol Bagikan.">
+          </div>
+        </figure>
+      </div>
+    </div>
   </div>
 </header>
 
-<main class="bungkus">
-  <section>
-    <p class="utama">Menagih utang ke teman sendiri selalu canggung. Anda ingat betul siapa yang belum membayar, tapi memulai percakapannya terasa berat: takut terdengar menuduh, takut merusak hubungan yang baik-baik saja.</p>
-    <p class="utama"><strong>Aplikasi ini dibuat untuk bagian itu.</strong> Ia mencatat utang dan piutang seperti pencatat lain — bedanya, ia juga menyiapkan pesannya. Karena pesannya terbaca sebagai catatan dari aplikasi, menagih tidak lagi terasa seperti menuduh.</p>
-  </section>
+<main>
+  <section class="masalah" aria-labelledby="judul-masalah">
+    <div class="bungkus">
+      <h2 id="judul-masalah" class="judul-bagian">Yang berat dari utang piutang adalah membicarakannya.</h2>
+      <p class="konteks">Pinjaman ke teman, talangan arisan keluarga, patungan makan siang dengan rekan kerja.</p>
 
-  <section style="margin-bottom:14px">
-    <h2>Tampilannya</h2>
-    <p class="geser">Geser untuk melihat semuanya.</p>
-  </section>
-</main>
-
-<div class="layar">
-  <figure>
-    <img src="gambar/1-daftar.png" width="1242" height="2208" loading="lazy" alt="Layar utama: ringkasan dua arah dan daftar catatan per kelompok">
-    <figcaption>Siapa berutang, berapa sisanya, dan mana yang perlu ditindak hari ini.</figcaption>
-  </figure>
-  <figure>
-    <img src="gambar/2-pesan-resmi.png" width="1242" height="2208" loading="lazy" alt="Layar pesan dengan nada format resmi beserta pratinjaunya">
-    <figcaption>Pesan format resmi — rinciannya tersusun rapi, nadanya tenang.</figcaption>
-  </figure>
-  <figure>
-    <img src="gambar/3-pesan-santai.png" width="1242" height="2208" loading="lazy" alt="Layar pesan dengan nada santai beserta pratinjaunya">
-    <figcaption>Atau nada santai, untuk teman dekat dan keluarga.</figcaption>
-  </figure>
-  <figure>
-    <img src="gambar/4-detail.png" width="1242" height="2208" loading="lazy" alt="Layar detail catatan beserta riwayat pembayaran">
-    <figcaption>Sisa terhitung otomatis dari setiap cicilan yang masuk.</figcaption>
-  </figure>
-  <figure>
-    <img src="gambar/6-telat.png" width="1242" height="2208" loading="lazy" alt="Daftar dengan satu catatan yang telat ditandai">
-    <figcaption>Yang telat ditandai, tanpa membuat aplikasi terasa menghakimi.</figcaption>
-  </figure>
-  <figure>
-    <img src="gambar/5-backup.png" width="1242" height="2208" loading="lazy" alt="Layar backup dan pulihkan">
-    <figcaption>Backup ke file milik Anda sendiri, bukan ke server kami.</figcaption>
-  </figure>
-</div>
-
-<main class="bungkus">
-  <section>
-    <h2>Yang bisa Anda lakukan</h2>
-    <div class="kartu">
-      <ul>
-        <li><strong>Catat dua arah</strong> — siapa berutang kepada Anda, dan kepada siapa Anda berutang</li>
-        <li><strong>Catat cicilan</strong> satu per satu; sisanya dihitung otomatis sampai lunas</li>
-        <li><strong>Pengingat jatuh tempo</strong> pada pagi harinya, dan sekali lagi bila tiga hari lewat tanpa dibayar</li>
-        <li><strong>Pesan siap kirim</strong> dalam tiga nada: format resmi, santai, dan sopan</li>
-        <li><strong>Bagikan lewat aplikasi chat mana pun</strong> — WhatsApp, Telegram, atau SMS</li>
-        <li><strong>Backup dan pulihkan</strong> saat ganti HP; catatan yang sudah ada tidak dihapus, hanya digabungkan</li>
+      <ul class="dua-arah">
+        <li>
+          <svg aria-hidden="true" focusable="false"><use href="#panah-ke-bawah"/></svg>
+          <p><span class="sr">Saat orang lain berutang ke Anda: </span>Menanyakannya terasa seperti menuduh.</p>
+        </li>
+        <li>
+          <svg aria-hidden="true" focusable="false"><use href="#panah-ke-atas"/></svg>
+          <p><span class="sr">Saat Anda yang berutang: </span>Diam terasa lebih aman daripada mengabari.</p>
+        </li>
       </ul>
+
+      <p class="jawaban">Utangku Utangmu mencatat keduanya, lalu menyiapkan pesannya. Karena terbaca sebagai catatan dari aplikasi, pesannya tidak terasa menuduh.</p>
     </div>
   </section>
 
-  <section>
-    <h2>Privasi</h2>
-    <div class="kartu">
-      <h3>Catatan Anda tidak ke mana-mana</h3>
-      <p>Seluruh catatan tersimpan di perangkat Anda sendiri. Tidak ada akun yang perlu dibuat, tidak ada yang dikirim ke server kami, dan seluruh fungsinya berjalan tanpa internet.</p>
-      <p>Yang memang dikirim hanya data pemakaian aplikasi — kejadian seperti "sebuah catatan dibuat", tanpa nama, nominal, atau isi catatan apa pun.</p>
-      <p><a href="kebijakan-privasi.html">Baca kebijakan privasi selengkapnya</a></p>
-    </div>
-  </section>
+  <div class="babak-2">
+    <section class="demo" aria-labelledby="judul-demo">
+      <div class="bungkus">
+        <h2 id="judul-demo" class="judul-bagian">Kalimatnya biar aplikasi yang menyusun.</h2>
+        <p class="pengantar">Pilih arah dan nadanya, pesannya langsung berganti. Ada 10 template untuk menagih maupun mengakui utang, dan isinya masih bisa Anda ubah di aplikasi chat sebelum dikirim.</p>
 
-  <section>
-    <h2>Yang sengaja tidak ada</h2>
-    <div class="kartu">
-      <p>Tidak ada iklan di dalam daftar catatan Anda. Tidak ada saldo bersih yang menjumlahkan utang dan piutang jadi satu angka — keduanya dua hubungan berbeda, dan menjumlahkannya menghilangkan artinya. Tidak ada pinjaman online, dan tidak ada penawaran kredit.</p>
-    </div>
-  </section>
+        <div class="demo-isi">
+          <div>
+            <fieldset class="pilih">
+              <legend>Arah</legend>
+              <div class="pilihan">
+                <input type="radio" name="arah" id="arah-tagih" checked>
+                <label for="arah-tagih"><span aria-hidden="true">↙</span> Saya menagih</label>
+                <input type="radio" name="arah" id="arah-akui">
+                <label for="arah-akui"><span aria-hidden="true">↗</span> Saya berutang</label>
+              </div>
+            </fieldset>
+            <fieldset class="pilih">
+              <legend>Nada</legend>
+              <div class="pilihan">
+                <input type="radio" name="nada" id="nada-resmi" checked>
+                <label for="nada-resmi">Resmi</label>
+                <input type="radio" name="nada" id="nada-santai">
+                <label for="nada-santai">Santai</label>
+                <input type="radio" name="nada" id="nada-sopan">
+                <label for="nada-sopan">Sopan</label>
+              </div>
+            </fieldset>
+            <p class="alur">Di aplikasi alurnya sama: catat utangnya, pilih nada, lalu bagikan lewat WhatsApp.</p>
+          </div>
 
-  <section>
-    <h2>Bantuan dan masukan</h2>
-    <div class="kartu">
-      <p>Ada yang rusak, membingungkan, atau kurang? Ceritakan saja. Aplikasi ini masih muda, dan masukan paling awal yang paling berpengaruh.</p>
-      <p><a href="mailto:digitalinsight1709@gmail.com">digitalinsight1709@gmail.com</a></p>
-    </div>
-  </section>
+          <div>
+            <div class="pratinjau" aria-label="Pratinjau pesan">
+              <p class="label-pratinjau">Pratinjau pesan</p>
+              <div class="pesan" data-pesan="tagih-resmi">
+<pre><b>PENGINGAT UTANG
+via Utangku Utangmu</b>
+────────────────────────
+Pengirim: Sari Wulandari
+Yang berutang: Budi Santoso
+Jumlah: Rp 500.000
+Sudah dibayar: Rp 200.000
+Sisa: Rp 300.000
+Dicatat: 19 Agustus 2026
+Jatuh tempo: 22 Agustus 2026
+Status: Belum jatuh tempo
+────────────────────────
+Pesan ini dibuat otomatis sebagai pengingat.</pre>
+                <p class="untuk">Format resmi. Nadanya mengikuti tanggal: lebih tegas bila sudah lama lewat.</p>
+              </div>
+              <div class="pesan" data-pesan="tagih-santai">
+                <p class="manusia">Budi, maaf ya ngingetin. Soal pinjaman Rp 500.000 yang 19 Agustus 2026 itu. Sisanya tinggal Rp 300.000.
+
+Kalau lagi ada, kabarin aja ya. Santai kok. Makasih!</p>
+                <p class="untuk">Santai, untuk teman dekat atau keluarga.</p>
+              </div>
+              <div class="pesan" data-pesan="tagih-sopan">
+                <p class="manusia">Halo Budi Santoso, apa kabar?
+
+Maaf mengganggu, mau mengingatkan soal pinjaman Rp 500.000 tanggal 19 Agustus 2026. Sisanya tinggal Rp 300.000.
+
+Kalau sudah memungkinkan, boleh dikabari ya. Terima kasih banyak.</p>
+                <p class="untuk">Sopan, untuk kenalan atau rekan kerja.</p>
+              </div>
+              <div class="pesan" data-pesan="akui-resmi">
+<pre><b>PENGAKUAN UTANG
+via Utangku Utangmu</b>
+────────────────────────
+Yang berutang: Sari Wulandari
+Kepada: Siti Aminah
+Jumlah: Rp 300.000
+Dicatat: 19 Agustus 2026
+Status: Belum diselesaikan
+Rencana bayar: 5 September 2026
+────────────────────────
+Pesan ini dibuat otomatis dari catatan.</pre>
+                <p class="untuk">Format resmi. Rencana bayar diambil dari jatuh tempo catatan.</p>
+              </div>
+              <div class="pesan" data-pesan="akui-santai">
+                <p class="manusia">Siti, soal pinjaman Rp 300.000 yang 19 Agustus 2026 itu belum aku lupa kok.
+
+Rencananya aku selesaikan sekitar 5 September 2026. Makasih ya udah sabar.</p>
+                <p class="untuk">Santai, untuk teman dekat atau keluarga.</p>
+              </div>
+              <div class="pesan" data-pesan="akui-sopan">
+                <p class="manusia">Halo Siti Aminah,
+
+Saya masih ingat soal pinjaman Rp 300.000 tanggal 19 Agustus 2026.
+
+Rencananya saya selesaikan sekitar 5 September 2026. Terima kasih banyak atas pengertiannya.</p>
+                <p class="untuk">Sopan, untuk kenalan atau rekan kerja.</p>
+              </div>
+            </div>
+            <p class="catatan-demo">Nama, nominal, dan tanggal di atas contoh.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="judul-deret">
+      <div class="bungkus">
+        <h2 id="judul-deret" class="judul-bagian">Sementara itu, catatannya tetap rapi.</h2>
+        <ul class="deret">
+          <li>
+            <figure class="hp"><div class="hp-layar">
+              <img src="gambar/hp/6-telat-300.webp" srcset="gambar/hp/6-telat-300.webp 300w, gambar/hp/6-telat-450.webp 450w"
+                   sizes="(min-width: 600px) 220px, 112px" width="300" height="650" loading="lazy" decoding="async"
+                   alt="Layar utama dengan kelompok Perlu ditindak: Budi Santoso 3 hari lagi, dan Rina telat 2 hari.">
+            </div></figure>
+            <div>
+              <h3>Tahu siapa yang perlu diurus</h3>
+              <p>Dikelompokkan menurut waktu. Pengingat datang pagi hari saat jatuh tempo.</p>
+            </div>
+          </li>
+          <li>
+            <figure class="hp"><div class="hp-layar">
+              <img src="gambar/hp/4-detail-300.webp" srcset="gambar/hp/4-detail-300.webp 300w, gambar/hp/4-detail-450.webp 450w"
+                   sizes="(min-width: 600px) 220px, 112px" width="300" height="650" loading="lazy" decoding="async"
+                   alt="Layar detail Budi Santoso: sisa Rp 300.000 dari nilai awal Rp 500.000, dengan riwayat dua pembayaran.">
+            </div></figure>
+            <div>
+              <h3>Cicilan terhitung sendiri</h3>
+              <p>Catat tiap pembayaran. Sisanya dihitung, lalu pindah ke Lunas.</p>
+            </div>
+          </li>
+          <li>
+            <figure class="hp"><div class="hp-layar">
+              <img src="gambar/hp/5-backup-300.webp" srcset="gambar/hp/5-backup-300.webp 300w, gambar/hp/5-backup-450.webp 450w"
+                   sizes="(min-width: 600px) 220px, 112px" width="300" height="650" loading="lazy" decoding="async"
+                   alt="Layar Backup dan pulihkan, dengan tombol Buat file backup dan Pilih file backup.">
+            </div></figure>
+            <div>
+              <h3>Backup ke tempat pilihan Anda</h3>
+              <p>Satu file, disimpan ke Google Drive atau folder mana pun.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="pita babak-3">
+    <svg class="motif motif-3" aria-hidden="true" focusable="false"><use href="#panah-ke-atas"/></svg>
+    <section aria-labelledby="judul-privasi">
+      <div class="bungkus privasi-isi">
+        <div>
+          <h2 id="judul-privasi" class="judul-bagian">Catatan Anda tinggal di HP Anda.</h2>
+          <p class="pengantar">Tidak dikirim ke server kami. Tanpa akun.</p>
+          <a class="tautan-blok" href="kebijakan-privasi.html">Baca kebijakan privasi</a>
+        </div>
+        <dl class="buku">
+          <div><dt>Pendaftaran</dt><dd>Tidak ada. Tanpa nomor telepon.</dd></div>
+          <div><dt>Tanpa sinyal</dt><dd>Mencatat dan menyiapkan pesan tetap jalan. Sinyal baru dibutuhkan saat mengirim.</dd></div>
+          <div><dt>Ganti HP</dt><dd>Pulihkan dari file backup. Catatan yang sudah ada digabungkan, tidak ditimpa.</dd></div>
+          <div><dt>Yang dikirim</dt><dd>Data pemakaian dan laporan crash, tanpa nama, nominal, atau isi catatan.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section aria-labelledby="judul-penutup">
+      <div class="bungkus">
+        <div class="penutup">
+          <h2 id="judul-penutup" class="judul-bagian">Mulai dari satu catatan.</h2>
+          <p class="pengantar">Untuk Android. Tanpa pendaftaran, tanpa nomor telepon.</p>
+          <a class="lencana-play" href="https://play.google.com/apps/testing/id.utangkumu.app">
+            <img src="gambar/google-play-id-330.webp" width="330" height="128" alt="Dapatkan di Google Play" loading="lazy">
+          </a>
+          <p class="status-uji">Saat ini dalam uji tertutup.</p>
+        </div>
+      </div>
+    </section>
+  </div>
 </main>
 
-<footer class="bungkus">
-  <p>Utangku Utangmu — diterbitkan oleh Digital Insight ID</p>
-  <p><a href="kebijakan-privasi.html">Kebijakan privasi</a></p>
+<footer class="kaki">
+  <div class="bungkus">
+    <p>Utangku Utangmu, diterbitkan oleh Digital Insight ID.</p>
+    <nav aria-label="Tautan situs">
+      <a href="kebijakan-privasi.html">Kebijakan privasi</a>
+      <a href="mailto:digitalinsight1709@gmail.com">Bantuan dan masukan: digitalinsight1709@gmail.com</a>
+    </nav>
+    <p class="legal">Google Play dan logo Google Play adalah merek dagang Google LLC.</p>
+  </div>
 </footer>
 
 </body>

@@ -3,23 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kebijakan Privasi — Utangku Utangmu</title>
+<title>Kebijakan Privasi · Utangku Utangmu</title>
 <meta name="description" content="Kebijakan privasi aplikasi Utangku Utangmu: apa yang tersimpan di perangkat, apa yang tidak pernah keluar dari sana, dan satu-satunya hal yang memang dikirim.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://utangku-utangmu.pages.dev/kebijakan-privasi.html">
+<meta name="theme-color" content="#123F2E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="huruf/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="gaya.css">
 <style>
-  :root {
-    --hutan: #123F2E;
-    --hutan-terang: #8FC7AC;
-    --kertas: #F1F4F1;
-    --permukaan: #FFFFFF;
-    --tinta: #171A21;
-    --redup: #5C636F;
-    --garis: #DDE3DE;
-    --kunyit: #8A5D0B;
-  }
-  * { box-sizing: border-box; }
+  /* Token warna dan huruf datang dari gaya.css (termasuk mode gelap). */
   body {
     margin: 0;
     background: var(--kertas);
@@ -39,7 +33,7 @@
   ul { padding-left: 20px; margin: 0 0 14px; }
   li { margin-bottom: 8px; }
   strong { font-weight: 800; }
-  a { color: var(--hutan); font-weight: 600; }
+  a { color: var(--tautan); font-weight: 600; }
   .kotak {
     background: var(--permukaan);
     border: 1px solid var(--garis);
@@ -50,7 +44,7 @@
   .kotak p:last-child { margin-bottom: 0; }
   table { width: 100%; border-collapse: collapse; margin: 0 0 14px; }
   th, td { text-align: left; vertical-align: top; padding: 12px 0; border-bottom: 1px solid var(--garis); }
-  th { font-size: 13px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--redup); }
+  th { font-size: 15px; font-weight: 700; color: var(--redup); }
   td:first-child { width: 38%; padding-right: 16px; font-weight: 600; }
   footer { border-top: 1px solid var(--garis); padding: 28px 0 56px; color: var(--redup); font-size: 15px; }
   footer p { margin: 0 0 6px; }
@@ -85,24 +79,24 @@
   <li>keterangan yang Anda tulis sendiri</li>
 </ul>
 
-<p><strong>Seluruhnya disimpan di dalam penyimpanan aplikasi pada perangkat Anda.</strong> Tidak ada satu pun yang dikirim ke server kami — kami memang tidak punya server untuk itu. Kami tidak bisa membaca catatan Anda, dan tidak punya cara untuk memulihkannya bila hilang.</p>
+<p><strong>Seluruhnya disimpan di dalam penyimpanan aplikasi pada perangkat Anda.</strong> Tidak ada satu pun yang dikirim ke server kami. Kami memang tidak punya server untuk itu. Kami tidak bisa membaca catatan Anda, dan tidak punya cara untuk memulihkannya bila hilang.</p>
 
 <p>Anda tidak perlu membuat akun. Aplikasi ini tidak meminta nomor telepon, alamat surel, ataupun izin membaca kontak.</p>
 
 <p><strong>Pencadangan otomatis Android dimatikan.</strong> Tanpa itu, sistem Android bisa menyalin basis data aplikasi ke cadangan Google Drive milik Anda sendiri saat pencadangan HP menyala. Cadangan itu bukan milik kami dan terenkripsi, tapi tetap berarti catatan Anda berpindah tempat tanpa Anda minta. Satu-satunya salinan yang keluar dari HP adalah file backup yang <strong>Anda</strong> buat sendiri lewat aplikasi.</p>
 
-<p><strong>Catatan Anda memuat nama orang lain.</strong> Karena data itu tidak pernah meninggalkan perangkat Anda, Andalah yang memegang kendali dan tanggung jawab atasnya — termasuk saat Anda membagikan pesan atau file backup kepada orang lain.</p>
+<p><strong>Catatan Anda memuat nama orang lain.</strong> Karena data itu tidak pernah meninggalkan perangkat Anda, Andalah yang memegang kendali dan tanggung jawab atasnya, termasuk saat Anda membagikan pesan atau file backup kepada orang lain.</p>
 
 <h2>2. File backup</h2>
 
-<p>Aplikasi menyediakan fitur backup. Saat Anda menekannya, seluruh catatan disalin ke satu file, lalu <strong>Anda sendiri</strong> yang memilih ke mana file itu disimpan atau dikirim lewat menu berbagi HP — Google Drive, folder unduhan, aplikasi chat, atau ke mana pun.</p>
+<p>Aplikasi menyediakan fitur backup. Saat Anda menekannya, seluruh catatan disalin ke satu file, lalu <strong>Anda sendiri</strong> yang memilih ke mana file itu disimpan atau dikirim lewat menu berbagi HP: Google Drive, folder unduhan, aplikasi chat, atau ke mana pun.</p>
 
 <div class="kotak">
   <p><strong>File backup tidak dikirim ke kami,</strong> dan kami tidak tahu ke mana Anda menyimpannya.</p>
   <p><strong>Isi file backup belum terenkripsi pada versi ini.</strong> Siapa pun yang memegang filenya bisa membacanya dengan aplikasi teks biasa, termasuk nama dan nominal di dalamnya. Simpanlah di tempat yang hanya bisa Anda akses.</p>
 </div>
 
-<p>Saat Anda memulihkan dari file backup, catatan yang sudah ada di HP tidak dihapus — isinya digabungkan.</p>
+<p>Saat Anda memulihkan dari file backup, catatan yang sudah ada di HP tidak dihapus. Isinya digabungkan.</p>
 
 <h2>3. Yang memang dikirim: data pemakaian aplikasi</h2>
 
@@ -126,7 +120,7 @@
 <h2>4. Berapa lama data disimpan</h2>
 
 <ul>
-  <li><strong>Catatan Anda:</strong> tersimpan di HP Anda sampai Anda menghapusnya sendiri — lewat aplikasi, lewat "hapus data" di setelan HP, atau dengan mencopot aplikasi. Kami tidak bisa menghapusnya untuk Anda, karena kami tidak memilikinya.</li>
+  <li><strong>Catatan Anda:</strong> tersimpan di HP Anda sampai Anda menghapusnya sendiri: lewat aplikasi, lewat "hapus data" di setelan HP, atau dengan mencopot aplikasi. Kami tidak bisa menghapusnya untuk Anda, karena kami tidak memilikinya.</li>
   <li><strong>Data pemakaian di Firebase Analytics:</strong> disimpan paling lama 14 bulan.</li>
   <li><strong>Laporan crash di Crashlytics:</strong> disimpan paling lama 90 hari.</li>
 </ul>
@@ -165,6 +159,7 @@
 
 <footer class="bungkus">
   <p>Digital Insight ID</p>
+  <nav aria-label="Tautan situs"><a class="tautan-blok" href="./">Beranda Utangku Utangmu</a></nav>
 </footer>
 
 </body>

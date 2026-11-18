@@ -3,25 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Panduan Penguji — Utangku Utangmu</title>
+<title>Panduan Penguji · Utangku Utangmu</title>
 <meta name="description" content="Cara memasang Utangku Utangmu versi uji tertutup, apa yang perlu dicoba, dan cara melaporkan masalah.">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#123F2E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="huruf/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="gaya.css">
 <style>
-  :root {
-    --hutan: #123F2E;
-    --hutan-terang: #8FC7AC;
-    --hutan-sekunder: #7D958C;
-    --kertas: #F1F4F1;
-    --permukaan: #FFFFFF;
-    --tinta: #171A21;
-    --redup: #5C636F;
-    --garis: #DDE3DE;
-    --kunyit: #8A5D0B;
-  }
-  * { box-sizing: border-box; }
+  /* Token warna dan huruf datang dari gaya.css (termasuk mode gelap). */
   body {
     margin: 0;
     background: var(--kertas);
@@ -49,25 +41,12 @@
   .kartu { background: var(--permukaan); border: 1px solid var(--garis); border-radius: 14px; padding: 24px; }
   .kartu :last-child { margin-bottom: 0; }
 
-  .penting { border-left: 4px solid var(--kunyit); }
-  .penting h2 { font-size: 19px; }
-
-  .tombol {
-    display: inline-block; background: var(--hutan); color: #fff;
-    padding: 15px 26px; border-radius: 15px; font-weight: 700;
-    text-decoration: none; font-size: 17px;
-  }
-  .nanti {
-    display: inline-block; border: 1.6px dashed var(--garis); color: var(--redup);
-    padding: 15px 22px; border-radius: 15px; font-weight: 600; font-size: 16px;
-  }
-
   .tanya { background: var(--hutan); color: #fff; border: none; }
   .tanya h2 { color: #fff; }
   .tanya p { color: var(--hutan-terang); }
   .tanya strong { color: #fff; }
 
-  a { color: var(--hutan); font-weight: 600; }
+  a { color: var(--tautan); font-weight: 600; }
   footer { border-top: 1px solid var(--garis); padding: 28px 0 56px; color: var(--redup); font-size: 15px; }
   footer p { margin: 0 0 8px; }
 
@@ -100,7 +79,7 @@
         <li>Tekan <strong>Jadi penguji</strong></li>
         <li>Tekan <strong>Download it on Google Play</strong>, lalu pasang seperti biasa</li>
       </ol>
-      <p><span class="nanti">Tautan pasang menyusul</span></p>
+      <p><a class="tautan-blok" href="https://play.google.com/apps/testing/id.utangkumu.app">Buka halaman uji coba di Google Play</a></p>
       <p>Kalau Play Store bilang aplikasinya tidak tersedia, kemungkinan besar alamat email kamu belum terdaftar. Kabari saja.</p>
     </div>
   </section>
@@ -109,7 +88,7 @@
     <h2>Yang paling berguna untuk dicoba</h2>
     <div class="kartu">
       <ol>
-        <li><strong>Catat utang piutang yang memang nyata</strong> — bukan contoh-contohan. Aplikasinya baru terasa benar atau salah kalau datanya sungguhan.</li>
+        <li><strong>Catat utang piutang yang memang nyata</strong>, bukan contoh-contohan. Aplikasinya baru terasa benar atau salah kalau datanya sungguhan.</li>
         <li><strong>Catat cicilan</strong> pada salah satu catatan, lalu periksa apakah sisanya betul.</li>
         <li><strong>Buka satu catatan, tekan Kirim pengingat</strong>, lalu baca pesan yang disiapkan aplikasi.</li>
         <li><strong>Coba backup</strong> dari menu titik tiga, simpan filenya ke Drive atau ke mana pun.</li>
@@ -122,7 +101,7 @@
       <h2>Satu pertanyaan yang paling saya butuhkan jawabannya</h2>
       <p>Setelah membaca pesan yang disiapkan aplikasi di langkah 3:</p>
       <p><strong>Apakah kamu benar-benar berani mengirim pesan itu ke orangnya?</strong></p>
-      <p>Kalau tidak — bagian mana yang bikin ragu? Kalimatnya terlalu kaku, terlalu santai, terlalu menuduh, atau ada yang kurang?</p>
+      <p>Kalau tidak, bagian mana yang bikin ragu? Kalimatnya terlalu kaku, terlalu santai, terlalu menuduh, atau ada yang kurang?</p>
       <p>Jawaban jujur untuk pertanyaan ini jauh lebih berharga daripada daftar bug.</p>
     </div>
   </section>
@@ -136,13 +115,13 @@
         <li>Sedang melakukan apa saat itu terjadi</li>
         <li>Tangkapan layarnya</li>
       </ul>
-      <p>Keluhan sekecil apa pun boleh — "tulisannya kekecilan", "nggak nemu tombolnya", "warnanya aneh". Justru itu yang paling berguna, karena saya sudah terlalu terbiasa dengan aplikasinya sendiri untuk menyadarinya.</p>
+      <p>Keluhan sekecil apa pun boleh: "tulisannya kekecilan", "nggak nemu tombolnya", "warnanya aneh". Justru itu yang paling berguna, karena saya sudah terlalu terbiasa dengan aplikasinya sendiri untuk menyadarinya.</p>
     </div>
   </section>
 
   <section>
     <h2>Satu permintaan</h2>
-    <div class="kartu penting">
+    <div class="kartu">
       <p><strong>Tolong jangan copot aplikasinya selama minimal dua minggu.</strong> Google menghitung jumlah penguji yang memakainya terus-menerus sebagai syarat sebelum aplikasi boleh terbit untuk umum. Satu orang yang mencopot bisa membuat hitungannya mundur.</p>
       <p>Setelah masa uji selesai, bebas.</p>
     </div>
@@ -151,7 +130,7 @@
   <section>
     <h2>Soal data kamu</h2>
     <div class="kartu">
-      <p>Catatan yang kamu tulis tersimpan di HP kamu sendiri dan tidak dikirim ke server mana pun. Saya tidak bisa melihatnya — tidak nama, tidak nominal, tidak apa pun.</p>
+      <p>Catatan yang kamu tulis tersimpan di HP kamu sendiri dan tidak dikirim ke server mana pun. Saya tidak bisa melihatnya: tidak nama, tidak nominal, tidak apa pun.</p>
       <p>Yang terkirim hanya data pemakaian aplikasi, misalnya "sebuah catatan dibuat", tanpa isinya. Selengkapnya di <a href="kebijakan-privasi.html">kebijakan privasi</a>.</p>
     </div>
   </section>
@@ -159,8 +138,11 @@
 </main>
 
 <footer class="bungkus">
-  <p><a href="index.html">Utangku Utangmu</a> — diterbitkan oleh Digital Insight ID</p>
-  <p><a href="kebijakan-privasi.html">Kebijakan privasi</a></p>
+  <p>Utangku Utangmu, diterbitkan oleh Digital Insight ID</p>
+  <nav aria-label="Tautan situs">
+    <a class="tautan-blok" href="index.html">Beranda Utangku Utangmu</a>
+    <a class="tautan-blok" href="kebijakan-privasi.html">Kebijakan privasi</a>
+  </nav>
 </footer>
 
 </body>

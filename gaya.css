@@ -1,4 +1,5 @@
-/* Nilai diambil dari lib/tampilan/token_desain.dart; alasannya di DESIGN.md. */
+/* Dasar bersama untuk semua halaman situs: huruf, token warna, reset.
+   Gaya khusus landing page ada di <style> index.html. Alasannya di DESIGN.md. */
 
 @font-face { font-family: "Plus Jakarta Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("huruf/plus-jakarta-sans-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Plus Jakarta Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("huruf/plus-jakarta-sans-latin-600-normal.woff2") format("woff2"); }
@@ -7,66 +8,36 @@
 @font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("huruf/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "IBM Plex Mono"; font-weight: 600; font-style: normal; font-display: swap; src: url("huruf/ibm-plex-mono-latin-600-normal.woff2") format("woff2"); }
 
+/* Situs selalu terang (DESIGN.md bagian 10). */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   --hutan: #123F2E;
+  --hutan-gelap: #0B261C;
+  --hutan-tengah: #1B5640;
   --hutan-terang: #8FC7AC;
   --hutan-halus: #E6EFEA;
   --hutan-sekunder: #7D958C;
+  --hijau-gelembung: #D9EEE3;
   --di-atas-hutan-terang: #0B1A13;
 
-  /* Netral, mode terang */
+  /* Warna arah: hanya panah dan nominal (DESIGN.md 3.2). */
+  --lumut: #0E7A4C;
+  --lumut-terang: #5DD69B;
+  --bata: #C0402C;
+  --bata-terang: #FA9077;
+
   --kertas: #F1F4F1;
   --permukaan: #FFFFFF;
-  --latar-pratinjau: #EDEFF2;
   --tinta: #171A21;
   --redup: #5C636F;
-  --pudar: #666C78;
   --garis: #E2E5EA;
-  --garis-kartu: #DDE3DE;
 
-  /* Peran yang berganti antar mode */
   --tautan: var(--hutan);
   --cincin: var(--hutan);
-  --latar-privasi: var(--hutan-halus);
-  --judul-pesan: var(--hutan);
-  /* Garis rambut di atas Hutan Halus. Garis biasa hilang di latar hijau muda,
-     jadi dipakai token Tepi Lencana Lunas, satu-satunya garis hijau di sistem. */
-  --garis-buku: #B4D8C4;
 
   --huruf: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --huruf-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
-
-  /* Radius bertingkat: lencana 6, kolom 11, kotak 14, tombol 15 */
-  --r-kolom: 11px;
-  --r-kotak: 14px;
-  --r-tombol: 15px;
-
-  /* Skala jarak berbasis 4, ditambah 64 dan 96 untuk jeda antarbagian web */
-  --j-2: 8px;  --j-3: 12px; --j-4: 16px; --j-5: 20px; --j-6: 24px;
-  --j-8: 32px; --j-10: 40px; --j-16: 64px; --j-24: 96px;
-
-  --tepi: 20px;
-  --lebar: 1120px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --kertas: #0E1014;
-    --permukaan: #1A1D24;
-    --latar-pratinjau: #15181E;
-    --tinta: #E8EAEE;
-    --redup: #969DAA;
-    --pudar: #7E8694;
-    --garis: #2C313A;
-    --garis-kartu: #2C313A;
-    --tautan: var(--hutan-terang);
-    --cincin: var(--hutan-terang);
-    --latar-privasi: #16241D;
-    --judul-pesan: var(--hutan-terang);
-    --garis-buku: #2E4A3B;
-  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -78,70 +49,21 @@ body {
   background: var(--kertas);
   color: var(--tinta);
   font-family: var(--huruf);
-  font-size: 1.0625rem;
+  font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 img { display: block; max-width: 100%; height: auto; }
 
-h1, h2, h3 { margin: 0; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
-h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
-h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
-p { margin: 0 0 var(--j-4); }
-p:last-child { margin-bottom: 0; }
-
-a { color: var(--tautan); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a { color: var(--tautan); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
-a:active { text-decoration-thickness: 3px; }
-
 a, button, summary { cursor: pointer; }
-
-:focus-visible { outline: 3px solid var(--cincin); outline-offset: 2px; border-radius: 4px; }
-
-.bungkus { width: 100%; max-width: calc(var(--lebar) + 2 * var(--tepi)); margin: 0 auto; padding: 0 var(--tepi); }
-
-/* Pita Hutan: hero dan penutup. Warnanya sama di kedua mode. */
-.pita { background: var(--hutan); color: #FFFFFF; --cincin: var(--hutan-terang); --tautan: var(--hutan-terang); }
-
-.merek { display: inline-flex; align-items: center; gap: var(--j-3); color: #FFFFFF; text-decoration: none; font-weight: 800; font-size: 1.0625rem; letter-spacing: -0.01em; min-height: 44px; }
-.merek svg { flex: none; }
-.merek:hover span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
-.merek:active span { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
-
-/* Tombol utama di atas pita Hutan: isi Hutan Terang, sama dengan tombol merek
-   pada mode gelap aplikasi. */
-.tombol {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 52px; padding: 0 var(--j-6);
-  border-radius: var(--r-tombol);
-  background: var(--hutan-terang); color: var(--di-atas-hutan-terang);
-  font-weight: 700; font-size: 1.0625rem; text-decoration: none;
-  border: 1.6px solid var(--hutan-terang);
-  transition: background-color 150ms ease, border-color 150ms ease;
-}
-.tombol:hover { background: var(--hutan-halus); border-color: var(--hutan-halus); text-decoration: none; }
-.tombol:active { background: #FFFFFF; border-color: #FFFFFF; }
-.tombol:focus-visible { outline-offset: 3px; border-radius: var(--r-tombol); }
-
-/* Sudut gambar sudah transparan; radius 6.3cqw = 60/954 px sumber, supaya tepi
-   jatuh tepat di sudut. Tepi Pudar karena latar panel nyaris sama dengan Kertas. */
-.layar { margin: 0; container-type: inline-size; }
-.layar img { width: 100%; border: 1px solid var(--pudar); border-radius: 20px; border-radius: 6.3cqw; background: transparent; }
-.layar figcaption { margin-top: var(--j-3); font-size: 0.9375rem; line-height: 1.45; color: var(--redup); }
-.pita .layar img { border-color: transparent; }
-
-.redup { color: var(--redup); }
 
 /* Tautan yang berdiri sendiri di satu baris: sasaran ketuk minimal 44px. */
 .tautan-blok { display: inline-flex; align-items: center; min-height: 44px; }
 
-.kaki { border-top: 1px solid var(--garis); padding: var(--j-8) 0 var(--j-16); color: var(--redup); font-size: 0.9375rem; }
-.kaki .bungkus, .kaki nav { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--j-6); row-gap: var(--j-2); }
-.kaki p { margin: 0; }
-.kaki a { display: inline-flex; align-items: center; min-height: 44px; }
-
-@media (max-width: 359px) { :root { --tepi: 16px; } }
+:focus-visible { outline: 3px solid var(--cincin); outline-offset: 3px; border-radius: 6px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }

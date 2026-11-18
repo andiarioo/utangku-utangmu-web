@@ -2,13 +2,11 @@
 
 | | |
 |---|---|
-| **Status** | Disetujui pemilik produk, 13 November 2026. Revisi 2 disetujui 17 November 2026 |
+| **Status** | Revisi 3 (Struk Resmi), disetujui pemilik produk 18 November 2026. Revisi 1 disetujui 13 November, revisi 2 disetujui 17 November 2026 (tersimpan di commit `cf04595`) |
 | **Berlaku untuk** | Landing page (satu halaman), ikut dipakai `kebijakan-privasi.html` dan `penguji.html` |
-| **Dial** | ENERGY 2 / RHYTHM 3 / MOTION 1 |
+| **Sumber visual** | Papan **1B · Struk Resmi · tanpa antislop (revisi 7)** di kanvas "Utangku Utangmu, Opsi Landing Page", dipilih pemilik 18 November 2026 dari enam opsi (tiga ide, masing-masing dengan dan tanpa antislop) |
 
-Dokumen ini menurunkan arah visual situs dari referensi yang sudah ada. Tidak ada nilai warna, huruf, atau radius baru yang dikarang di sini. Tambahan khusus web hanya dua jarak antarbagian (64 dan 96), karena skala aplikasi berhenti di 40.
-
-**Revisi 2 (17 November 2026).** Versi pertama dinilai pemilik terlalu polos, kurang bervariasi, dan terasa seperti tumpukan teks. Penyebabnya dial yang dikunci terlalu rendah (ENERGY 1 / RHYTHM 2). Revisi 2 menaikkan dial, memangkas teks dari ±630 menjadi ±300 kata, menambah demo pesan interaktif, bingkai HP, lencana resmi Google Play, dan menyusun halaman menjadi tiga babak yang menyambung.
+**Kenapa revisi 3.** Pemilik masih kurang suka revisi 2. Supaya lebih hemat waktu, desain digarap dulu di kanvas, bukan langsung di situs. Pemilik memilih versi **tanpa antislop**, lalu menyempurnakannya lewat tujuh putaran revisi. Dokumen ini menurunkan papan itu menjadi aturan untuk kode. Kalau dokumen ini dan papan 1B berbeda, papan 1B yang benar, kecuali untuk hal yang ditulis di bagian 7.2 (perilaku di HP, yang tidak ada di papan).
 
 ---
 
@@ -16,121 +14,140 @@ Dokumen ini menurunkan arah visual situs dari referensi yang sudah ada. Tidak ad
 
 | Urutan | Sumber | Dipakai untuk |
 |---|---|---|
-| 1 | `docs/panduan-merek-utangku-utangmu-v1.3.svg` | Konsep, mark, nama, warna, tipografi, nada suara, larangan |
-| 2 | `docs/BRAND-GUIDELINE.md` (pelengkap v1.3) | Privasi sebagai merek, kata ganti, aturan materi pemasaran (bagian 5) |
-| 3 | Kanvas "Desain Utangku Utangmu", papan *Sistem desain* | Token lengkap termasuk mode gelap dan Latar Pratinjau |
-| 4 | `docs/DESIGN-SYSTEM.md` + `lib/tampilan/token_desain.dart` | Radius, jarak, garis, komponen |
-| 5 | Layar aplikasi yang dirender dari kode (`test/aset/buat_tangkapan_layar.dart`) | Kebenaran tentang aplikasi. Kalau dokumen dan layar berbeda, layar yang benar |
-| 6 | `lib/pesan/susun_pesan.dart`, `TEMPLATE-PESAN.md`, `deskripsi-play-store.md` | Isi pesan di demo dan fakta yang boleh diklaim |
-| 7 | Pedoman lencana Google Play | Bentuk dan pemakaian tombol unduh |
-
-Kalau dua sumber berselisih, yang lebih atas menang. Pedoman Google Play berlaku penuh untuk lencananya sendiri.
+| 1 | `docs/panduan-merek-utangku-utangmu-v1.3.svg` | Mark, nama, warna, tipografi, nada suara, larangan |
+| 2 | `docs/BRAND-GUIDELINE.md`, terutama **bagian 5 (materi pemasaran)** | Yang boleh di situs tapi tidak di aplikasi: bayangan, pendar gradien, dan warna arah pada panah serta nominal contoh |
+| 3 | Papan 1B di kanvas | Susunan, bentuk, isi teks |
+| 4 | Layar aplikasi yang dirender dari kode | Kebenaran tentang aplikasi. Kalau papan dan layar berbeda, layar yang benar |
+| 5 | `lib/pesan/susun_pesan.dart`, `lib/pengingat/jadwal_pengingat.dart`, `deskripsi-play-store.md` | Isi pesan contoh dan fakta yang boleh diklaim |
+| 6 | Pedoman lencana Google Play | Bentuk dan pemakaian tombol unduh |
 
 ---
 
-## 1. Design Read
+## 1. Arah
 
-> Halaman produk untuk pengguna Android di Indonesia yang punya utang atau piutang dengan teman, keluarga, atau rekan kerja, dalam bahasa visual **pencatat resmi yang datar, tapi hidup**, dial ENERGY 2 / RHYTHM 3 / MOTION 1.
+> **Struk Resmi: pesan resmi jadi bintangnya.** Pesan gaya resmi tampil sebagai struk kertas bertepi sobek, berdampingan dengan gelembung chat gaya santai dan sopan. Di sekelilingnya: kartu putih berbayang lembut, pita hijau bergradien, dan layar aplikasi asli di dalam bingkai HP.
 
-- **ENERGY 2.** Judul besar, dua HP bertumpuk di hero, panah raksasa, dan pita gelap memberi tenaga. Tetap tanpa bayangan, gradien, atau perayaan, supaya kesan pencatat resmi yang dipinjam pesan tidak hilang.
-- **RHYTHM 3.** Setiap bagian punya susunan sendiri: hero terbelah, pernyataan besar dengan panah, demo interaktif, deret tiga HP, baris buku catatan. Bagian-bagian itu diikat menjadi **tiga babak** supaya bervariasi tanpa terputus.
-- **MOTION 1.** Hanya perubahan keadaan pada hover, tekan, fokus, dan pergantian pilihan demo (150ms). Tanpa animasi saat menggulir. Aplikasinya tanpa animasi perayaan; situsnya juga.
+- **Hidup, tidak polos.** Bayangan, gradien, kartu, dan kemiringan ringan dipakai dengan sengaja. Keluhan "terlalu polos dan seperti tumpukan teks" adalah alasan utama revisi ini.
+- **Tetap resmi.** Teks struk memakai huruf mono, tanpa emoji, tanpa tanda seru, tanpa perayaan.
+- **Tanpa antislop.** Aturan gaya antislop (larangan bayangan, gradien, FAQ, tiga langkah, kartu) tidak berlaku untuk revisi ini. Pemeriksaan teknisnya tetap dijalankan (bagian 12).
 
 ---
 
-## 2. Konsep yang dibawa ke situs
+## 2. Konsep
 
-**Pihak ketiga yang netral.** Situs berbicara dengan suara yang sama seperti aplikasi: menyatakan keadaan tanpa menilai. Ia tidak membujuk, tidak berjanji lebih dari yang ada di aplikasi.
+**Dua arah, satu aplikasi.** Nama produk adalah dua arah itu sendiri. Bagian kedua halaman langsung menunjukkan kartu Utangmu dan Utangku berdampingan, masing-masing dengan pesan yang disiapkan untuknya.
 
-**Dua arah yang setara.** Setiap kali kedua arah disebut, keduanya tampil **berdampingan dengan bobot sama** (bertumpuk menyiratkan yang atas lebih utama). Di HP keduanya bertumpuk karena lebar, dengan ukuran yang sama.
+**Tunjukkan pesannya.** Pembeda produk adalah pesan siap-kirim. Struk resmi muncul di hero, lalu muncul lagi di bagian pesan bersama gelembung santai dan sopan.
 
-**Tunjukkan, jangan jelaskan.** Pembeda produk adalah pesannya, jadi pesan itu dipertontonkan lewat demo yang bisa dicoba, bukan diterangkan dengan paragraf.
+**Jujur.** Tidak ada testimoni, angka pengguna, rating, atau klaim yang tidak bisa ditunjukkan di aplikasi.
 
 ---
 
 ## 3. Warna
 
-### 3.1 Peran di situs
+### 3.1 Palet
 
-| Token | Terang | Gelap | Peran di situs |
+| Token | Nilai | Peran di situs |
+|---|---|---|
+| Hutan | `#123F2E` | Pita hero dan pesan, kartu fitur besar, kartu Utangmu, ikon langkah, judul kecil di kartu terang |
+| Hutan Gelap | `#0B261C` | Ujung gelap gradien, latar kaki halaman |
+| Hutan Tengah | `#1B5640` | Ujung terang gradien gelap |
+| Hutan Terang | `#8FC7AC` | Baris kedua H1, teks pendamping di latar gelap, ikon garis, pendar gradien, cincin di sekitar baki lencana |
+| Hutan Halus | `#E6EFEA` | Latar layar langkah, kotak ikon manfaat, tujuan backup, kartu pengingat; teks pendamping di latar gelap |
+| Hutan Sekunder | `#7D958C` | Hanya garis: cap putus-putus di struk. **Tidak untuk teks** (3.21:1 di atas putih, gagal AA). Di papan ia dipakai untuk label kecil seperti "Langkah 1" dan "Pesan yang disiapkan"; di situs label itu memakai Redup (6.05:1) |
+| Hijau Gelembung | `#D9EEE3` | Gelembung chat keluar |
+| Kertas | `#F1F4F1` | Latar halaman |
+| Putih | `#FFFFFF` | Kartu, struk, baki lencana, kotak pesan mini |
+| Tinta | `#171A21` | Teks utama, bezel HP |
+| Redup | `#5C636F` | Teks pendamping di latar terang |
+| Garis | `#E2E5EA` | Tepi baris manfaat backup |
+| Teks di atas Hutan Terang | `#0B1A13` | Teks di kartu Utangku dan lencana nada |
+
+### 3.2 Warna arah: hanya di data
+
+Pengecualian di `BRAND-GUIDELINE.md` bagian 5 (diputuskan pemilik, 18 November 2026; `CATATAN-TERTUNDA.md` A35 di repo aplikasi):
+
+| Arah | Di latar terang | Di latar gelap | Dipakai pada |
 |---|---|---|---|
-| Hutan | `#123F2E` | `#123F2E` (pita tetap) | Pita hero dan babak 3, pilihan demo yang aktif, tautan, cincin fokus di latar terang |
-| Hutan Terang | `#8FC7AC` | `#8FC7AC` | Teks pendamping dan cincin fokus di pita gelap, motif panah (13%), pilihan demo aktif di mode gelap |
-| Hutan Halus | `#E6EFEA` | `#16241D` (Merek Halus) | Latar babak 2 (demo dan deret) |
-| Hutan Sekunder | `#7D958C` | sama | Kata kedua wordmark di latar terang; garis rambut dan cincin hover lencana di pita gelap (3.69:1, non-teks). Tidak pernah untuk teks biasa |
-| Kertas | `#F1F4F1` | `#0E1014` | Latar halaman; area status kosong di layar HP |
-| Permukaan | `#FFFFFF` | `#1A1D24` | Kotak pratinjau pesan, tombol pilihan demo |
-| Latar Pratinjau | `#EDEFF2` | `#15181E` | Cadangan untuk kotak isi pesan |
-| Tinta | `#171A21` | `#E8EAEE` | Teks utama; nilai Tinta terang juga dipakai sebagai warna bezel HP |
-| Redup | `#5C636F` | `#969DAA` | Teks pendamping, keterangan |
-| Garis | `#E2E5EA` | `#2C313A` | Garis rambut; nilai Garis gelap juga dipakai sebagai bezel HP di mode gelap |
-| Teks di atas Hutan Terang | `#0B1A13` | sama | Label pilihan demo aktif di mode gelap |
+| Utangmu / Akan diterima | Lumut `#0E7A4C` | Lumut Terang `#5DD69B` | Panah ↙ dan nominal contoh "Sisa: Rp 300.000" |
+| Utangku / Harus dibayar | Bata `#C0402C` | Bata Terang `#FA9077` | Panah ↗ dan nominal contoh "Jumlah: Rp 300.000" |
 
-### 3.2 Warna yang sengaja tidak dipakai di luar layar aplikasi
+**Hanya panah dan nominal.** Tidak pernah latar, judul, kartu, tombol, lencana, atau mark. Kunyit tidak dipakai di luar layar aplikasi.
 
-**Lumut, Bata, dan Kunyit** hanya muncul **di dalam** layar aplikasi di dalam bingkai HP (warna arah hanya untuk data). Panah ↙ ↗ di situs memakai Hutan atau Hutan Terang. **Gagal** tidak dipakai; situs statis ini tidak punya keadaan gagal. Warna lencana Google Play (hitam dan warna logo Play) milik Google dan tidak dihitung sebagai bagian palet.
+### 3.3 Gradien
 
-### 3.3 Satu aksen
+| Nama | Nilai | Dipakai |
+|---|---|---|
+| Pita hero | pendar `radial-gradient(900px 500px at 75% 30%, Hutan Terang 35%, transparan 60%)` di atas `linear-gradient(160deg, #1B5640, #123F2E 45%, #0B261C)` | Hero |
+| Kartu gelap | `linear-gradient(160deg, #1B5640, #123F2E)` | Kartu Utangmu, kartu fitur besar |
+| Kartu Utangku | `linear-gradient(160deg, #E6EFEA, #8FC7AC)` | Kartu Utangku. Kiri atas sengaja paling terang supaya panah Bata terbaca |
+| Ajakan | pendar `radial-gradient(600px 300px at 50% 0%, Hutan Terang 45%, transparan 70%)` di atas `linear-gradient(135deg, #1B5640, #0B261C)` | Kotak ajakan penutup |
 
-Aksen yang disengaja hanya **Hutan Terang** di pita gelap: teks pendamping, motif panah, cincin fokus. Inti palet: Kertas, Tinta, Hutan, dengan Hutan Halus sebagai latar babak 2.
+Pita bagian pesan tetap Hutan rata, tanpa gradien.
 
 ### 3.4 Kontras
 
-Diukur pada halaman jadi (17 November 2026): teks terendah **5.16:1** di mode terang dan **5.9:1** di mode gelap. Pasangan kunci: putih di atas Hutan 11.82, Hutan Terang di atas Hutan 6.16, Redup di atas Kertas 5.46, Redup di atas Hutan Halus 5.16, Hutan di atas Kertas 10.67. Hutan Sekunder di atas Hutan 3.69: gagal untuk teks, jadi hanya dipakai untuk garis dan cincin.
+Diukur ulang pada halaman jadi. Pasangan yang perlu dijaga:
+
+- Panah arah adalah grafik besar (44px), minimal 3:1: Bata di atas `#E6EFEA` 4.46, Lumut Terang dan Bata Terang di atas kartu gelap 3.8 ke atas.
+- Nominal berwarna di kotak putih: Bata 5.24, Lumut 5.38.
+- Teks di latar gelap: Hutan Terang di atas Hutan 6.16, Hutan Halus di atas Hutan 10.08.
+- Redup di atas putih 6.05. Hutan Sekunder tidak dipakai untuk teks (lihat 3.1).
 
 ---
 
 ## 4. Tipografi
 
-| Huruf | Dipakai untuk | Alasan |
-|---|---|---|
-| **Plus Jakarta Sans** 400 · 600 · 700 · 800 | Semua judul, isi, label, tombol, pesan gaya santai dan sopan | Huruf antarmuka aplikasi, karya Tokotype (foundry Indonesia) |
-| **IBM Plex Mono** 400 · 600 | **Hanya** isi pesan gaya resmi di demo | Panduan v1.3 halaman 10: otoritas pencatat resmi. Aturan CLAUDE.md nomor 10 |
+| Huruf | Dipakai untuk |
+|---|---|
+| **Plus Jakarta Sans** 400 · 600 · 700 · 800 | Semua judul, isi, label, tombol, gelembung santai dan sopan |
+| **IBM Plex Mono** 400 · 600 | **Hanya** struk pesan resmi, kotak pesan mini, dan nominal contoh (aturan CLAUDE.md nomor 10) |
 
-Kedua huruf di-*host* sendiri (`.woff2`, subset Latin) dan di-*preload*, tidak dimuat dari Google Fonts: lebih cepat, dan situs yang menjual privasi tidak mengirim alamat IP pengunjung ke Google hanya untuk huruf.
-
-### 4.1 Skala web
+Kedua huruf di-*host* sendiri dari `huruf/` dan di-*preload*. Papan memakai Google Fonts; situs tidak, supaya situs yang menjual privasi tidak mengirim alamat IP pengunjung ke Google.
 
 | Peran | Ukuran | Bobot |
 |---|---|---|
-| H1 (hero) | `clamp(2.25rem, 7vw, 4rem)`, tinggi baris 1.05 | 800 |
-| H2 (judul bagian, **satu ukuran di semua bagian**) | `clamp(1.75rem, 4.5vw, 3rem)` | 800 |
-| Pernyataan dua arah | `clamp(1.25rem, 2.6vw, 1.625rem)` | 700 |
-| H3 | 1.25rem | 700 |
-| Pengantar bagian | 1.1875rem, tinggi baris 1.55 | 400 |
-| Isi | 1.0625rem (17px), tinggi baris 1.6 | 400 |
-| Keterangan | 0.9375rem | 400 |
-| Isi pesan resmi | 0.9375rem mono (0.8125rem di ≤400px) | 400, kop 600 |
+| H1 | `clamp(34px, 3.9vw, 50px)` (papan: 58px, lihat 7.2), tinggi baris 1.05, spasi huruf -0.03em | 800 |
+| Judul bagian (`.judul`) | `clamp(26px, 3vw, 36px)`, tinggi baris 1.2 | 700 |
+| Judul ajakan | `clamp(28px, 3.4vw, 40px)` | 700 |
+| Label bagian | 15px | 700 |
+| H3 kartu | 21 sampai 26px | 700 |
+| Pengantar hero | 20px | 400 |
+| Isi | 17px, tinggi baris 1.6 | 400 |
+| Struk | 13.5px mono, tinggi baris 1.65 | 400, kop 600 |
 
-Tanpa label huruf besar berjarak lebar di atas judul. Judul bagian adalah kalimat yang menyatakan sesuatu.
+**Aturan judul** (dari revisi pemilik):
+- Satu baris di desktop. Tidak ada judul yang patah ke baris baru dengan janggal.
+- Tanpa titik di akhir, tanpa koma di tengah.
+- Bukan label huruf besar berjarak lebar.
 
 ---
 
 ## 5. Bentuk
 
-**Datar.** Tanpa bayangan, tanpa elevasi, tanpa gradien, tanpa blur. Pemisah memakai garis rambut 1px. BRAND-GUIDELINE bagian 5 membolehkan bayangan dan pendar di materi pemasaran; situs ini tidak memakainya. Yang dipakai dari bagian itu hanya **panah hiasan** di pita gelap.
+### 5.1 Radius dan bayangan
 
-| Elemen | Nilai |
-|---|---|
-| Radius kolom / tombol pilihan demo | 11 |
-| Radius kotak pratinjau pesan | 14 |
-| Garis | tipis 1 · tegas 1.6 (tepi tombol pilihan) |
-| Jarak | 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40, ditambah **64 · 96** |
-| Tepi atas-bawah babak, dan jarak antarbagian di dalam babak | 64px di HP, 96px mulai 900px |
-| Tepi kiri-kanan | 16px di bawah 360px, 20px selebihnya |
-| Lebar isi maksimal | 1120px; kolom teks 48 sampai 60 karakter |
-
-Bukan bentuk pil. Tidak ada kotak di dalam kotak, tidak ada tombol di dalam kotak. Satu-satunya kotak adalah pratinjau pesan.
-
-### 5.1 Kendali
-
-| Kendali | Rupa | Keadaan |
+| Elemen | Radius | Bayangan |
 |---|---|---|
-| **Lencana Google Play** (hero dan penutup) | Gambar resmi "Dapatkan di Google Play", tinggi 64px, **tidak diubah** | Hover: cincin 2px Hutan Sekunder di luar lencana. Tekan: cincin 3px putih. Fokus: cincin 3px Hutan Terang. Lencananya sendiri tidak berubah |
-| **Pilihan demo** (radio) | Permukaan, tepi 1.6, radius 11, tinggi 48px | Aktif: isi Hutan, teks putih (gelap: Hutan Terang, teks `#0B1A13`). Hover: tepi warna tautan. Tekan: latar Hutan Halus. Fokus: cincin 3px |
-| **Tautan** | Garis bawah 1px | Hover 2px, tekan 3px |
+| Kartu | 24 | `0 20px 40px -24px` Hutan 35% + `0 2px 6px` Hutan 6% |
+| Kotak backup | 32 | `0 30px 60px -30px` Hutan 40% |
+| Kotak ajakan | 36 | `0 40px 80px -40px` Hutan 80% |
+| Struk | 18 atas, tepi bawah sobek | `0 40px 80px -30px` hitam 60% |
+| Baki lencana | 20 | `0 24px 48px -18px` hitam 60% + cincin 6px Hutan Terang 25% |
+| Gelembung chat | 22, sudut kanan bawah 6 dengan ekor | `0 18px 36px -18px` hitam 35% |
+| Kotak pesan mini | 14 | `0 16px 32px -18px` hitam 45% |
+| Stiker hero | 14 | `0 16px 32px -12px` hitam 50% |
+| Baris manfaat backup | 16, tepi 1px Garis | tanpa |
+| Tombol "Lihat cara kerja" | 12, tepi 1.5px putih 40% | tanpa |
+| Ikon langkah | 14 | tanpa |
 
-Fokus keyboard tidak pernah dihapus tanpa pengganti.
+### 5.2 Unsur khas
+
+- **Label bagian:** mark Utangku Utangmu (26 × 21) + teks 15px tebal. Latar terang: mark dua warna. Latar gelap: mark putih penuh.
+- **Struk:** kertas putih, tepi bawah bergerigi setengah lingkaran (CSS `mask`), sedikit dimiringkan (-3° di hero, -4° di bagian pesan). Di bagian pesan ada cap bergaris putus "STATUS: BELUM JATUH TEMPO".
+- **Baki lencana:** lencana resmi Google Play di atas baki putih, dengan teks "Pasang di HP Anda / Tanpa login, tanpa buat akun". Lencananya sendiri tidak diubah.
+- **Daftar nada:** tiga baris, lencana Hutan Terang (Resmi, Santai, Sopan) + satu kalimat. Tidak patah baris di desktop.
+- **Alur backup:** "1 file backup" → cabang garis putus → Cloud | Folder di HP, vertikal.
 
 ---
 
@@ -138,145 +155,163 @@ Fokus keyboard tidak pernah dihapus tanpa pengganti.
 
 ### 6.1 Layar aplikasi dalam bingkai HP
 
-**Layar dirender dari kode aplikasi pada ukuran layar penuh**, bukan dipotong dari gambar toko: 1080 × 2340 piksel (Samsung SM-M215F, HP rujukan proyek, 411 × 891 titik), memakai generator tangkapan layar toko yang disalin dengan ukuran itu dan tanpa bingkai jualan. Gambar toko di `docs/aset-toko/` tidak disentuh. Isi layar tidak disunting.
+Layar dirender dari kode aplikasi pada 1080 × 2340 piksel, sama dengan revisi 2. Isinya tidak disunting.
 
-**Bingkai HP Android generik**, dibuat dengan CSS:
-- Proporsi layar 9:19,5 mengikuti HP Android umum; layar yang menyesuaikan bingkai, bukan sebaliknya.
-- Bezel tipis rata (`#171A21`, mode gelap `#2C313A`), sudut membulat.
-- Kamera berlubang di **area status yang dibiarkan kosong** (warna Kertas). Tanpa jam, sinyal, atau baterai karangan.
-- Bukan model bermerek (bukan iPhone, bukan Pixel), datar, tanpa bayangan atau kilap.
+Bingkai HP Android generik dari CSS (`container-type: inline-size`, ukuran dalam `cqw`): bezel Tinta, kamera berlubang di area status kosong, sudut membulat. Sejak revisi 3 bingkainya **berbayang** (`0 30px 60px -20px` hitam 55%).
 
-Pemakaian:
-- **Hero:** dua HP bertumpuk dan dimiringkan (daftar di belakang, pesan resmi di depan), dipisah garis Hutan 3px, bukan bayangan.
-- **Deret babak 2:** tiga HP berjajar (daftar telat, detail, backup), sama tinggi; di bawah 600px menjadi baris HP 112px dengan teks di kanan.
+| Berkas | Layar | Dipakai di |
+|---|---|---|
+| `gambar/hp/2-pesan-resmi-*.webp` | Kirim pengingat, format resmi | Hero |
+| `gambar/hp/6-telat-*.webp` | Daftar dengan satu catatan telat | Kartu fitur besar |
+| `gambar/hp/4-detail-*.webp` | Detail catatan dan riwayat pembayaran | Kartu cicilan |
+| `gambar/hp/0b-form-catat-*.webp` **(baru)** | Form catat baru | Langkah 1 |
+| `gambar/hp/3-pesan-santai-*.webp` **(baru)** | Pemilihan nada | Langkah 2 |
+| `gambar/hp/0c-form-pembayaran-*.webp` **(baru)** | Catat pembayaran | Langkah 3 |
 
-Berkas: `gambar/hp/*.webp`, lebar 300/450/600 dengan `srcset`, `width`/`height` tertulis. Hero memakai `fetchpriority="high"`, sisanya `loading="lazy"`. Setiap gambar punya `alt` yang menjelaskan isinya.
+Lebar 300 dan 450 dengan `srcset`; `width`/`height` tertulis. Hero memakai `fetchpriority="high"`, sisanya `loading="lazy"`. `1-daftar` dan `5-backup` tidak dipakai lagi dan dihapus dari folder.
 
-### 6.2 Mark dan nama
+### 6.2 Mark, nama, logo
 
-- Mark dari `docs/aset-toko/mark-utangku-utangmu.svg`, tidak digambar ulang. Di pita Hutan: versi satu warna terang, nama putih kedua katanya.
-- Ruang bebas setinggi satu bilah. Tidak dibingkai, tidak diputar, tidak berbayang.
-- Favicon dari `ikon-play-store-512.png`; gambar Open Graph dari `grafik-unggulan-1024x500.png`, dipotong ke 1200 × 630.
+- Mark dari `docs/aset-toko/mark-utangku-utangmu.svg`, ditulis langsung sebagai SVG. Di latar gelap: kata pertama putih, bilah bawah Hutan Terang (kepala halaman dan kaki halaman), atau putih penuh (label bagian).
+- **Logo Digital Insight Indonesia** (putih, mendatar) di kaki halaman, `gambar/logo-dii.svg`, diambil dari aset di kanvas (SVG, tanpa skrip).
+- Favicon, manifest, dan gambar Open Graph tetap dari revisi 2. Gambar Open Graph belum disesuaikan dengan revisi 3 (lihat bagian 13).
 
-### 6.3 Ikon, panah, dan lencana
+### 6.3 Lencana Google Play
 
-- **Tanpa pustaka ikon.**
-- **Panah ↙ ↗** dipakai sebagai: teks di tombol pilihan demo; SVG besar di bagian masalah (Hutan); motif latar di pita gelap (Hutan Terang 13%, tidak masuk ruang bebas mark). Panah adalah isi produk, bukan hiasan acak.
-- **Lencana Google Play** `gambar/google-play-id.png` diunduh dari `play.google.com` (versi bahasa Indonesia, 646 × 250) dan disimpan sebagai sumber. Yang tampil `google-play-id-330.webp`: diperkecil proporsional ke 330px (dua kali ukuran tampil) dalam WebP lossless, pikselnya tidak diubah. Aturan: tidak diubah warna atau bentuknya, ukuran tidak terlalu kecil, ada ruang bebas di sekelilingnya, dan kaki halaman memuat kalimat "Google Play dan logo Google Play adalah merek dagang Google LLC."
+`gambar/google-play-id-330.webp`, tinggi tampil 60px, tidak diubah warna atau bentuknya, ada ruang bebas di dalam baki.
 
 ---
 
-## 7. Motif identitas
+## 7. Susunan halaman
 
-1. **Demo pesan yang bisa dicoba.** Dua pilihan (arah: menagih/berutang; nada: resmi/santai/sopan), enam pesan. Isinya mengikuti persis keluaran `lib/pesan/susun_pesan.dart` dengan data contoh berlabel. Gaya resmi tampil mono, gaya santai dan sopan tampil huruf biasa, seperti di aplikasi.
-2. **Dua arah berdampingan** dengan panah raksasa ↙ ↗.
-3. **Baris buku catatan** untuk fakta privasi: label di kiri, nilai di kanan, garis rambut.
-4. **Panah di pita gelap**, motif yang sama dengan gambar Play Store, sehingga situs dan halaman toko terbaca satu keluarga.
+### 7.1 Urutan bagian
+
+| # | Bagian | Latar | Isi |
+|---|---|---|---|
+| 1 | Hero | Pita hero | Kepala: mark + nama, menu Fitur · Pesan · Cara kerja · FAQ. H1 "Tagih tanpa canggung / Catat tanpa ribet". Pengantar. Baki lencana + tombol "Lihat cara kerja →". Kanan: HP pesan resmi, struk, stiker "Banyak pilihan pesan · Resmi · Santai · Sopan" |
+| 2 | Utangku dan Utangmu | Kertas | "Catat utang orang lain sekaligus utang Anda sendiri". Kartu Utangmu (gelap) dan Utangku (terang) berdampingan, masing-masing dengan kotak pesan mini |
+| 3 | Fitur (`#fitur`) | Kertas | "Semua utang piutang tertata rapi di satu tempat". Kartu fitur besar selebar penuh (empat kelompok waktu, dua arah, HP telat), lalu kartu cicilan dan kartu pengingat berdampingan |
+| 4 | Pesan (`#pesan`) | Hutan | Kiri: label, "Pilih nada pesannya", pengantar, daftar nada. Kanan: struk resmi bercap + gelembung santai dan sopan |
+| 5 | Cara kerja (`#cara`) | Kertas | "Dari catatan pertama sampai pesan terkirim". Tiga kartu: layar asli di atas, ikon + "Langkah N" sebaris, judul di bawahnya (di papan judul ada di samping ikon; dipindah supaya "Kirim, lalu catat bayarannya" muat satu baris), lalu penjelasan |
+| 6 | Backup | Kotak putih | "Simpan backup di tempat pilihan Anda". Kiri: Mudah, Praktis, Tetap di tangan Anda. Kanan: alur vertikal |
+| 7 | FAQ (`#faq`) | Kertas | Empat pertanyaan, `<details>` bawaan browser, yang pertama terbuka |
+| 8 | Ajakan | Kotak ajakan | "Siap menagih tanpa canggung?", "Mulai dari satu catatan.", baki lencana |
+| 9 | Kaki halaman | Hutan Gelap | Mark + satu kalimat · Hubungi kami (surel, WhatsApp) · Diterbitkan oleh (logo DII). Garis, lalu "© 2026 PT Digital Insight Indonesia" dan Kebijakan privasi |
+
+Lebar isi maksimal 1200px, tepi kiri-kanan 32px (20px di ≤900px). Jarak antarbagian 100 sampai 110px di desktop.
+
+### 7.2 Di HP (tidak ada di papan, diputuskan saat membangun)
+
+Papan hanya digambar selebar 1440px. Aturan untuk layar kecil:
+
+- **≤900px:** semua grid menjadi satu kolom. Jarak antarbagian turun ke 64px.
+- **≤700px:** menu kepala disembunyikan; kepala hanya mark + nama.
+- **Hero:** susunan bertumpuk (struk, HP, stiker yang diposisikan absolut) diubah menjadi aliran biasa: HP di tengah, struk menimpa sebagian kiri bawahnya, stiker disembunyikan di ≤480px. Tidak boleh ada yang terpotong atau membuat halaman bisa digeser ke samping.
+- **Bagian pesan:** struk dan gelembung bertumpuk ke bawah, kemiringan dikurangi.
+- **Kartu fitur besar:** HP di bawah teks, bagian bawahnya terpotong tepi kartu seperti di desktop.
+- **Kartu cicilan:** HP pindah ke bawah teks, tidak menimpa teks.
+- **≤480px:** daftar nada, kelompok waktu, dan pasangan arah menjadi satu kolom; teksnya boleh patah baris.
+- **H1** memakai `clamp(28px, 8.2vw, 48px)` supaya tiap barisnya muat satu baris sampai lebar 340px. Di desktop `clamp(34px, 3.9vw, 50px)`, lebih kecil dari papan (58px), karena di 1280px "Tagih tanpa canggung" patah baris.
+- **Nominal** ditulis dengan spasi tak-putus (`Rp&nbsp;500.000`) supaya "Rp" tidak terpisah dari angkanya.
+- Diuji di 360, 768, dan 1280px.
 
 ---
 
 ## 8. Nada bahasa
 
-**Suara antarmuka** (panduan v1.3 halaman 11): "Anda", sistematis, tenang, menyatakan keadaan tanpa menilai.
+Suara antarmuka (panduan v1.3 halaman 11): "Anda", tenang, menyatakan keadaan tanpa menilai. Tanpa emoji, tanpa tanda seru.
 
-- Tanpa emoji, tanpa tanda seru, tanpa tanda pisah panjang.
-- Ejaan baku **utang**; **hutang** sekali saja di meta description.
-- Judul menyatakan fakta, bukan janji atau seruan.
-- Menyebut kedua arah.
-- **Kalimat penyambung antarbagian**, supaya halaman terbaca sebagai satu cerita: "Yang berat … membicarakannya" → "Kalimatnya biar aplikasi yang menyusun" → "Sementara itu, catatannya tetap rapi" → "Catatan Anda tinggal di HP Anda" → "Mulai dari satu catatan".
+**Aturan dari revisi pemilik:**
+- Istilah Inggris yang umum dipakai apa adanya: **backup, cloud, preview, login**. Jangan di-Indonesia-kan.
+- "Login" dan "buat akun", bukan "pendaftaran".
+- Jangan menyebut jumlah template; pakai "banyak variasi".
+- Jangan menyebut Google Drive atau "server kami" (suatu saat aplikasi akan memakai cloud).
+- Jangan menulis "gratis" (belum diputuskan) atau "Android" di ajakan.
+- Hindari koma yang menimbulkan jeda janggal di judul.
 
-### 8.1 Fakta yang boleh diklaim, dan sumbernya
+### 8.1 Fakta yang boleh diklaim
 
-| Klaim | Sumber |
+| Klaim di halaman | Sumber |
 |---|---|
-| Catat utang dan piutang dua arah | Layar daftar, deskripsi Play Store |
-| Daftar dikelompokkan menurut waktu: Perlu ditindak, Masih ada waktu, Tanpa tenggat, Lunas | Layar daftar |
-| 10 template; tiga nada Resmi, Santai, Sopan; untuk menagih dan mengakui utang | `TEMPLATE-PESAN.md`, `layar_pesan.dart` |
-| Isi keenam pesan di demo | `susun_pesan.dart` (data contoh, dilabeli) |
-| Format resmi menyesuaikan tanggal | `layar_pesan.dart` (urgensi ringan, standar, tegas) |
-| Pesan bisa diubah di aplikasi chat sebelum dikirim | Layar pesan |
-| Cicilan dicatat, sisa dihitung, pindah ke Lunas | Layar detail, deskripsi Play Store |
-| Pengingat pagi hari saat jatuh tempo | Deskripsi Play Store |
-| Tanpa pendaftaran, tanpa nomor telepon | Deskripsi Play Store |
-| Mencatat dan menyiapkan pesan tanpa sinyal; mengirim butuh sinyal | KEPUTUSAN-PRODUK, kebijakan privasi |
-| Backup satu file ke Google Drive atau folder mana pun; memulihkan menggabungkan | Layar backup |
-| Yang dikirim hanya data pemakaian dan laporan crash, tanpa isi catatan | Kebijakan privasi |
-| Saat ini dalam uji tertutup | `ROADMAP.md` |
+| Catat utang dan piutang dua arah | Layar daftar |
+| Kelompok Perlu ditindak, Masih ada waktu, Tanpa tenggat, Lunas | Layar daftar |
+| Akan diterima dan Harus dibayar selalu terpisah | Layar daftar |
+| Banyak variasi template untuk menagih dan mengakui utang; nada Resmi, Santai, Sopan | `TEMPLATE-PESAN.md`, `layar_pesan.dart` |
+| Isi struk dan gelembung | `susun_pesan.dart` dengan data contoh |
+| Lihat preview, bagikan lewat WhatsApp, isi bisa diubah sebelum dikirim | Layar pesan, menu berbagi Android |
+| Cicilan dicatat, sisa dihitung, pindah ke Lunas | Layar detail |
+| Notifikasi pagi hari saat jatuh tempo, dan sekali lagi bila tanggalnya lewat | `jadwal_pengingat.dart`: pukul 09.00 hari-H, susulan 3 hari kemudian |
+| Tanpa login, tanpa buat akun, tanpa nomor telepon | Deskripsi Play Store |
+| Catatan disimpan di HP; mencatat dan menyiapkan pesan jalan tanpa sinyal | KEPUTUSAN-PRODUK, kebijakan privasi |
+| Satu file backup ke cloud milik pengguna atau folder di HP; memulihkan menggabungkan, tidak menimpa | Layar backup, KEPUTUSAN-PRODUK bagian 6 |
+| Pesan tidak terkirim otomatis | Layar pesan (memakai menu berbagi) |
 
-### 8.2 Yang tidak boleh ditulis
-
-Jumlah pengguna, rating, unduhan, testimoni. "Backup otomatis". "Terenkripsi". "Tidak memakan kuota". "Pesan resmi yang sah / terverifikasi". "Berterima kasih" sebagai jenis pesan. Apa pun tentang pinjaman online atau kredit.
+**Klaim yang akan berubah:** "Tanpa login, tanpa buat akun" harus ditinjau saat login masuk di v1.x.
 
 ---
 
-## 9. Komposisi: tiga babak
+## 9. Gerak
 
-Tujuh blok warna di versi pertama terasa seperti tujuh halaman. Revisi 2 mengikatnya menjadi tiga babak; di dalam satu babak tidak ada potongan warna.
-
-| Babak | Latar | Bagian | Susunan |
-|---|---|---|---|
-| **1. Masalah** | Pita Hutan → Kertas | Hero; Masalah | Hero: teks kiri, dua HP bertumpuk kanan, lencana + "Saat ini dalam uji tertutup.", motif panah. Masalah: judul, konteks satu baris, dua pernyataan besar berdampingan dengan panah raksasa, kalimat jawaban di bawah garis rambut |
-| **2. Produk** | Hutan Halus, menyambung | Demo pesan; Deret fitur | Demo: pilihan di kiri, pratinjau di kanan, kalimat alur ("catat, pilih nada, bagikan") di bawah pilihan. Deret: tiga HP berjajar dengan judul dan satu kalimat |
-| **3. Kepercayaan dan ajakan** | Pita Hutan, menyambung | Privasi; Penutup | Privasi: judul besar kiri, baris buku catatan kanan. Penutup: dipisah garis rambut Hutan Sekunder, judul, lencana + keterangan uji. Motif panah |
-
-Kaki halaman di Kertas: penerbit, `nav` (kebijakan privasi, surel bantuan), kalimat merek dagang Google.
-
-**Breakpoint:** 600px (hero dua kolom, deret tiga kolom), 820px (dua arah dan demo berdampingan, privasi dua kolom), 900px (jarak 96px, HP hero lebih besar).
-
-**Navigasi:** tidak ada menu di kepala halaman; kepala hanya mark + nama.
-
-**Halaman lain:** `kebijakan-privasi.html` dan `penguji.html` memakai `gaya.css` yang sama; isinya tidak berubah oleh revisi 2.
-
----
-
-## 10. Gerak
-
-- Hover, tekan, fokus, dan pergantian pilihan demo: perubahan warna latar/tepi 150ms.
-- Tanpa animasi saat menggulir, parallax, atau animasi melayang. Kemiringan HP di hero statis.
+- Hover, tekan, dan fokus: perubahan warna, tepi, atau bayangan 150ms.
+- Kemiringan struk, HP, dan stiker statis. Tanpa animasi saat menggulir.
 - `prefers-reduced-motion: reduce` mematikan semua transisi.
 
 ---
 
-## 11. Mode gelap
+## 10. Mode gelap
 
-Situs mengikuti setelan perangkat (`prefers-color-scheme`) dengan token gelap dari papan Sistem desain, tanpa tombol ganti tema, sama seperti aplikasinya. Pita Hutan tetap Hutan; layar aplikasi di dalam bingkai tetap versi terang. Ini pengecualian antislop R-21 yang diputuskan pemilik (bagian 15).
+**Tidak ada.** Situs selalu tampil terang (`color-scheme: light`), termasuk `kebijakan-privasi.html` dan `penguji.html`. Papan 1B hanya didesain terang dan sudah punya bagian gelap sendiri. Diputuskan pemilik 18 November 2026; revisi 2 dulu mengikuti setelan HP.
 
 ---
 
-## 12. Aksesibilitas dan performa
+## 11. Kendali
 
-- Kontras WCAG AA di kedua mode (bagian 3.4).
-- Fokus keyboard terlihat di semua kendali; urutan Tab mengikuti urutan baca; pilihan demo bisa diganti dengan tombol panah keyboard.
-- Sasaran ketuk minimal 44px (pilihan demo 48px, lencana 64px).
-- `alt` pada semua gambar; hiasan SVG `aria-hidden`; panah di bagian masalah punya teks khusus pembaca layar.
-- `lang="id"`, satu H1, tingkat judul tidak melompat, landmark `header` · `main` · `nav` · `footer`.
-- Tanpa horizontal scroll di 360, 600, 768, 820, dan 1280px.
-- **Tanpa JavaScript.** Demo berganti lewat CSS `:has()`; browser yang belum mendukungnya tetap menampilkan pesan resmi menagih tanpa tombol pilihan.
+| Kendali | Keadaan |
+|---|---|
+| Baki lencana | Hover: baki terangkat sedikit (bayangan membesar). Fokus: cincin 3px Hutan Terang di luar baki. Lencananya tidak berubah |
+| Tombol "Lihat cara kerja" | Hover: tepi putih penuh. Fokus: cincin 3px Hutan Terang |
+| Menu kepala dan tautan di latar gelap | Hover: garis bawah. Fokus: cincin 3px Hutan Terang |
+| Tautan di latar terang | Garis bawah; fokus: cincin 3px Hutan |
+| Pertanyaan FAQ | Seluruh baris bisa diketuk (min. 44px); penanda buka-tutup terlihat; fokus: cincin 3px Hutan |
+
+Fokus keyboard tidak pernah dihapus tanpa pengganti.
+
+---
+
+## 12. Aksesibilitas, performa, dan pemeriksaan
+
+Aturan gaya antislop tidak berlaku. Pemeriksaan teknis berikut tetap wajib sebelum diserahkan:
+
+- Kontras WCAG AA (bagian 3.4), diukur dengan skrip pada halaman jadi.
+- Sasaran ketuk minimal 44px.
+- Tanpa geser ke samping di 360, 768, dan 1280px.
+- Lighthouse mobile dan desktop.
+- Tidak ada testimoni, angka pengguna, rating, atau klaim di luar bagian 8.1.
+- `lang="id"`, satu H1, tingkat judul tidak melompat, landmark `header` · `nav` · `main` · `footer`, `alt` pada semua gambar, hiasan `aria-hidden`.
+- Tanpa JavaScript. FAQ memakai `<details>`.
 - Tanpa langkah build: folder siap unggah ke Cloudflare Pages apa adanya.
+
+Laporan audit di `anti-slop/` adalah untuk revisi 1 dan 2, disimpan sebagai riwayat.
 
 ---
 
 ## 13. Yang tidak masuk situs
 
-Testimoni, angka pengguna, rating, logo "dipercaya oleh", FAQ, harga, bento grid, kartu fitur seragam, bagian "cara kerja" bernomor, gradien, bayangan, emoji, ikon pustaka, ilustrasi, bingkai HP bermerek, status bar karangan, dan semua yang ada di daftar "yang tidak boleh masuk" panduan v1.3 (dompet, koin, lambang Rp, perayaan).
+Testimoni, angka pengguna, rating, logo "dipercaya oleh", harga, emoji, bingkai HP bermerek, status bar karangan, dan daftar "yang tidak boleh masuk" panduan v1.3 (dompet, koin, lambang Rp, perayaan).
+
+**Juga dihapus atas keputusan pemilik:** keterangan "Saat ini dalam uji tertutup" dan kalimat merek dagang Google di kaki halaman. Catatan: pedoman lencana Google Play meminta kalimat merek dagang itu dicantumkan. Kalau Google mempermasalahkannya, kalimat itu dikembalikan ke kaki halaman.
+
+**Belum dikerjakan:** gambar Open Graph masih desain revisi 2. Bisa disamakan dengan revisi 3 sebagai pekerjaan terpisah.
 
 ---
 
-## 14. Keputusan atas pertanyaan terbuka
+## 14. Keputusan
 
-1. **CTA (17 Nov).** Lencana resmi Google Play dengan keterangan "Saat ini dalam uji tertutup."; tautan ke `play.google.com/apps/testing/id.utangkumu.app`. Saat terbit: tautan diganti ke halaman toko dan keterangan dihapus (`CATATAN-TERTUNDA.md` A34 di repo aplikasi).
+1. **CTA.** Lencana menuju `https://play.google.com/apps/testing/id.utangkumu.app` (uji tertutup), tanpa keterangan uji. Saat terbit: ganti ke `https://play.google.com/store/apps/details?id=id.utangkumu.app` (`CATATAN-TERTUNDA.md` A34 di repo aplikasi).
 2. **Domain.** Tanpa domain kustom; alamat kanonis `utangku-utangmu.pages.dev`.
-3. **Kanvas "Utangku Utangmu, Landing Page".** Diabaikan.
+3. **Kontak.** Surel dan WhatsApp PT Digital Insight Indonesia di kaki halaman, sesuai yang diberikan pemilik.
+4. **Revisi 2 disimpan** di commit `cf04595` sebelum diganti.
+5. **Mode gelap** tidak ada (bagian 10).
+6. **Antislop:** aturan gaya tidak berlaku, pemeriksaan teknis tetap (bagian 12).
 
-## 15. Keputusan terhadap aturan antislop
-
-Diputuskan pemilik produk, 17 November 2026.
-
-| Hal | Aturan antislop | Keputusan |
-|---|---|---|
-| Lencana Google Play saat aplikasi masih uji tertutup | R-38 (konten nyata atau placeholder jujur) | **Sesuai aturan:** lencana + keterangan "Saat ini dalam uji tertutup." |
-| Bagian "Tiga langkah" | R-05 (pola template tiga langkah) | **Sesuai aturan:** bagian dihapus; alur disebut di demo pesan |
-| Mode gelap tanpa tombol ganti tema | R-21 | **Pengecualian:** mengikuti setelan HP, seperti aplikasinya |
-| Keadaan hover/tekan lencana Google Play | R-39 vs pedoman Google (lencana tidak boleh diubah) | **Sesuai keduanya:** cincin di luar lencana |
-
-Dokumen ini dan folder `anti-slop/` ikut terbit karena output Cloudflare adalah root repo, dan repo-nya publik di GitHub. Jangan menulis nama orang atau data pribadi di sini.
+Dokumen ini ikut terbit karena output Cloudflare adalah root repo, dan repo-nya publik di GitHub. Jangan menulis data pribadi di sini. Surel dan nomor WhatsApp di atas adalah kontak perusahaan yang memang ditampilkan di halaman.
